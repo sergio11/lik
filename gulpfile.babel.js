@@ -14,7 +14,7 @@ const plugins = gulpLoadPlugins({
     'gulp-streamify': 'streamify',
     'gulp-autoprefixer': 'autoprefixer',
     'gulp-cssmin': 'cssmin',
-    'gulp-less': 'less',
+    'gulp-sass': 'sass',
     'gulp-concat': 'concat',
     'gulp-plumber': 'plumber',
     'gulp-uglify': 'uglify',
@@ -132,20 +132,20 @@ gulp.task('images', () => {
 
 /*
  |--------------------------------------------------------------------------
- | Compile LESS stylesheets.
+ | Compile sass stylesheets.
  |--------------------------------------------------------------------------
  */
 gulp.task('styles', () => {
-  return gulp.src('app/stylesheets/main.less')
+  return gulp.src('app/stylesheets/main.sass')
     .pipe(plugins.plumber())
-    .pipe(plugins.less())
+    .pipe(plugins.sass())
     .pipe(plugins.autoprefixer())
     .pipe(plugins.if(production, plugins.cssmin()))
     .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('watch', () => {
-  gulp.watch('app/stylesheets/**/*.less', ['styles']);
+  gulp.watch('app/stylesheets/**/*.sass', ['styles']);
 });
 
 gulp.task('default', ['styles', 'images','vendor', 'browserify-watch', 'watch']);
