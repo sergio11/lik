@@ -3,6 +3,11 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 
 class App extends React.Component {
+
+  constructor(){
+    super();
+  }
+
   render() {
     return (
       <div>

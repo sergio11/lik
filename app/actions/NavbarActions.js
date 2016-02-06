@@ -1,5 +1,5 @@
 import alt from '../alt';
-import api from '../../lib/api';
+import api from '../lib/api';
 import {assign} from 'underscore';
 
 class NavbarActions {
