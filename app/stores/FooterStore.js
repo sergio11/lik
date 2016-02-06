@@ -5,7 +5,9 @@ class FooterStore {
   constructor() {
     /*bindActions is a magic Alt method which binds actions to their handlers defined in the store.*/
     this.bindActions(FooterActions);
-    this.characters = [];
+    this.state = {
+      characters: []
+    };
   }
 
   onGetTopCharactersSuccess(data) {
@@ -17,6 +19,10 @@ class FooterStore {
     console.log(err);
     // Handle multiple response formats, fallback to HTTP status code number.
     //toastr.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
+  }
+
+  getState(){
+    return this.state;
   }
 }
 

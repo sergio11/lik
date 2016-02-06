@@ -30,6 +30,10 @@ class NavbarStore {
   }
 
   onGetCharacterCountFail(err) {}
+
+  getState(){
+    return this.state;
+  }
 }
 
 export default alt.createStore(NavbarStore);
