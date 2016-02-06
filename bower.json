@@ -1,0 +1,29 @@
+{
+  "name": "lik",
+  "description": "Character voting app for EVE Online",
+  "main": "server.js",
+  "authors": [
+    "Sergio Sánchez Sánchez <sss4esob@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ReactJS",
+    "Node.js",
+    "MongoDB",
+    "SocketIO"
+  ],
+  "homepage": "https://github.com/sergio11/lik",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "magnific-popup": "^1.0.1",
+    "toastr": "^2.1.2"
+  }
+}
