@@ -5,6 +5,8 @@ import source from 'vinyl-source-stream';
 import babelify from 'babelify';
 import browserify from 'browserify';
 import watchify from 'watchify';
+import imageminJpegtran from 'imagemin-jpegtran';
+import imageminPngquant from 'imagemin-pngquant';
 const plugins = gulpLoadPlugins({
   rename:{
     'gulp-util': 'util',
@@ -16,7 +18,9 @@ const plugins = gulpLoadPlugins({
     'gulp-concat': 'concat',
     'gulp-plumber': 'plumber',
     'gulp-uglify': 'uglify',
-    'gulp-sourcemaps': 'sourcemaps'
+    'gulp-sourcemaps': 'sourcemaps',
+    'gulp-imagemin': 'imagemin',
+    'gulp-size': 'size'
   },
   scope: 'devDependencies'
 });
@@ -105,6 +109,27 @@ gulp.task('browserify-watch', ['browserify-vendor'], () => {
   }
 });
 
+
+/*
+  /--------------------------------------------------------------------------
+  / JPG and PNG image optimization
+  / -------------------------------------------------------------------------
+*/
+
+gulp.task('images', () => {
+	return gulp.src('./app/img/*')
+		.pipe(plugins.imagemin({
+      progressive: true,
+      interlaced: true,
+      svgoPlugins: [{removeViewBox: false}],
+			use: [imageminJpegtran({progressive: true}),imageminPngquant()]
+		}))
+		.pipe(gulp.dest('public/img'))
+		.pipe(plugins.size({
+			title:"Images"
+		}));
+});
+
 /*
  |--------------------------------------------------------------------------
  | Compile LESS stylesheets.
@@ -123,5 +148,5 @@ gulp.task('watch', () => {
   gulp.watch('app/stylesheets/**/*.less', ['styles']);
 });
 
-gulp.task('default', ['styles', 'vendor', 'browserify-watch', 'watch']);
-gulp.task('build', ['styles', 'vendor', 'browserify']);
+gulp.task('default', ['styles', 'images','vendor', 'browserify-watch', 'watch']);
+gulp.task('build', ['styles', 'images','vendor', 'browserify']);
