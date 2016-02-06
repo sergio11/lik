@@ -1,7 +1,7 @@
 {
   "name": "lik",
   "description": "Character voting app for EVE Online",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/sergio11/lik"
@@ -28,6 +28,7 @@
     "mongoose": "^4.2.5",
     "morgan": "^1.6.1",
     "react": "^0.14.2",
+    "react-bootstrap": "^0.28.2",
     "react-dom": "^0.14.2",
     "react-router": "^1.0.0",
     "request": "^2.65.0",
