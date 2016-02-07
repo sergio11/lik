@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
+import NavBarB from 'react-bootstrap/lib/Navbar'
+import {  Nav, NavItem, Badge, Input, Button, Glyphicon, NavDropdown, MenuItem} from 'react-bootstrap';
 import NavbarStore from '../stores/NavbarStore';
 import NavbarActions from '../actions/NavbarActions';
 import connectToStores from '../hoc/connectToStores';
@@ -29,7 +31,31 @@ class Navbar extends React.Component {
 
   render() {
     return(
-      <div></div>
+      <NavBarB>
+        <NavBarB.Header staticTop>
+          <NavBarB.Brand>
+            <Link to='/'>LIK<Badge className='badge-up badge-danger'>42</Badge></Link>
+          </NavBarB.Brand>
+          <NavBarB.Toggle />
+        </NavBarB.Header>
+        <NavBarB.Collapse>
+          <NavBarB.Form pullLeft onSubmit={this.handleSubmit.bind(this)}>
+            <Input type="text" placeholder={this.props.totalCharacters + ' characters'} value={this.props.searchQuery} onChange={NavbarActions.updateSearchQuery} buttonAfter={<Button type='submit'><Glyphicon glyph="search" /></Button>} />
+          </NavBarB.Form>
+          <Nav>
+            <NavItem eventKey={1} href="#"><Link to='/'>Home</Link></NavItem>
+            <NavItem eventKey={2} href="#"><Link to='/stats'>Stats</Link></NavItem>
+            <NavDropdown eventKey={3} title="Top 100" id="basic-nav-dropdown">
+              <MenuItem eventKey={3.1}><Link to='/top'>Top Overall</Link></MenuItem>
+              <MenuItem eventKey={3.2}>Another action</MenuItem>
+              <MenuItem eventKey={3.3}>Something else here</MenuItem>
+              <MenuItem divider />
+              <MenuItem eventKey={3.3}>Separated link</MenuItem>
+            </NavDropdown>
+          </Nav>
+        </NavBarB.Collapse>
+      </NavBarB>
+
     );
   }
 }
