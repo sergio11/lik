@@ -25,8 +25,8 @@ export var connectToStores = Component => class extends React.Component {
     }
 
     render() {
-        let componentFactory = React.createFactory(Component);
-        return componentFactory(extend(this.state, this.props));
+       let props = extend(this.state, this.props);
+       return <Component {...props}/>;
     }
 };
 

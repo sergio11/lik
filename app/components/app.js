@@ -4,8 +4,8 @@ import Footer from './Footer';
 
 class App extends React.Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
   }
 
   render() {
@@ -18,5 +18,6 @@ class App extends React.Component {
     );
   }
 }
+
 
 export default App;

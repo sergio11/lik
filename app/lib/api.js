@@ -1,6 +1,6 @@
 import request from 'superagent';
 
-const API = {
+export const API = {
 
   getJSON: (endpoint,params) => {
      return new Promise((resolve,reject) => {

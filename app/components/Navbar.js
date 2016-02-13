@@ -6,6 +6,7 @@ import {LinkContainer} from  'react-router-bootstrap';
 import NavbarStore from '../stores/NavbarStore';
 import NavbarActions from '../actions/NavbarActions';
 import connectToStores from '../hoc/connectToStores';
+import socket from 'socket.io-client';
 
 @connectToStores
 class Navbar extends React.Component {
@@ -20,10 +21,23 @@ class Navbar extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log("Estas son las props para el NavBar");
+    console.log(props);
   }
 
   componentDidMount() {
-    NavbarActions.getCharacterCount();
+    console.log("Abriendo Socket ...");
+    let client = socket('http://localhost');
+    client.on('connect', () => {
+      console.log("Estoy conectado vamos!!!!");
+    });
+
+    client.on('onlineUsers', (data) => {
+      console.log("Nuevo usuario conectado ...");
+      console.log(data);
+      NavbarActions.updateOnlineUsers(data);
+    });
+
   }
 
   handleSubmit(event) {
@@ -35,7 +49,7 @@ class Navbar extends React.Component {
       <NavBarB>
         <NavBarB.Header staticTop>
           <NavBarB.Brand>
-            <Link to='/'>LIK<Badge className='badge-up badge-danger'>42</Badge></Link>
+            <Link to='/'>LIK<Badge className='badge-up badge-danger'>{this.props.onlineUsers}</Badge></Link>
           </NavBarB.Brand>
           <NavBarB.Toggle />
         </NavBarB.Header>

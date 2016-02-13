@@ -18,7 +18,7 @@ class NavbarStore {
   onFindCharacterFail(payload) {}
 
   onUpdateOnlineUsers(data) {
-    this.onlineUsers = data.onlineUsers;
+    this.state.onlineUsers = data.onlineUsers;
   }
 
   onUpdateSearchQuery(event) {
