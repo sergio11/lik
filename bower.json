@@ -24,7 +24,6 @@
   "dependencies": {
     "jquery": "~2.2.0",
     "magnific-popup": "^1.0.1",
-    "toastr": "^2.1.2",
     "bootstrap-sass": "^3.3.6"
   }
 }
