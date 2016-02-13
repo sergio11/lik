@@ -10,6 +10,14 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var Rosetta = require('@schibstedspain/rosetta');
+var Polyglot = require('@schibstedspain/rosetta/lib/adapters/polyglot');
+var languages = require('./app/languages');
+
+const i18n = new Rosetta.default({adapter: new Polyglot()});
+i18n.languages = languages;
+i18n.culture = 'es';
+i18n.addToContext(Router.RoutingContext);
 
 var app = express();
 

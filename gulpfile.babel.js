@@ -130,6 +130,18 @@ gulp.task('images', () => {
 		}));
 });
 
+
+/*
+ |--------------------------------------------------------------------------
+ | Copy web fonts to dist
+ |--------------------------------------------------------------------------
+*/
+
+gulp.task('fonts', () => {
+  return gulp.src('bower_components/bootstrap-sass/assets/fonts/**')
+    .pipe(gulp.dest('public/fonts/'))
+});
+
 /*
  |--------------------------------------------------------------------------
  | Compile sass stylesheets.
@@ -148,5 +160,5 @@ gulp.task('watch', () => {
   gulp.watch('app/stylesheets/**/*.sass', ['styles']);
 });
 
-gulp.task('default', ['styles', 'images','vendor', 'browserify-watch', 'watch']);
+gulp.task('default', ['styles','fonts', 'images','vendor', 'browserify-watch', 'watch']);
 gulp.task('build', ['styles', 'images','vendor', 'browserify']);

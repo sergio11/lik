@@ -12,9 +12,10 @@ i18n.culture = 'es';
 i18n.addToContext(Route,languages);
 
 const AppRouter = (props, context) => {
-  context.i18n.culture = props.params.lang;
+  //context.i18n.culture = props.params.lang;
   return (<App {...props} />);
 }
+
 
 export default (
   <Route path='/(:lang)' component={AppRouter}>
