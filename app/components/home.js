@@ -4,11 +4,10 @@ import { Alert } from 'react-bootstrap';
 class Home extends React.Component {
   render() {
     return (
-      <Alert bsStyle="success"><strong>{this.i18n.t('greeting')}</strong></Alert>
+      <Alert bsStyle="success">Hello from <strong>Home component</strong></Alert>
     );
   }
 }
-
 Home.contextTypes = {
     i18n: React.PropTypes.object
 };

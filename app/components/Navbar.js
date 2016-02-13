@@ -1,7 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router';
 import NavBarB from 'react-bootstrap/lib/Navbar'
-import {  Nav, NavItem, Badge, Input, Button, Glyphicon, NavDropdown, MenuItem} from 'react-bootstrap';
+import {Nav, NavItem, Badge, Input, Button, Glyphicon, NavDropdown, MenuItem} from 'react-bootstrap';
+import {LinkContainer} from  'react-router-bootstrap';
 import NavbarStore from '../stores/NavbarStore';
 import NavbarActions from '../actions/NavbarActions';
 import connectToStores from '../hoc/connectToStores';
@@ -43,10 +44,16 @@ class Navbar extends React.Component {
             <Input type="text" placeholder={this.props.totalCharacters + ' characters'} value={this.props.searchQuery} onChange={NavbarActions.updateSearchQuery} buttonAfter={<Button type='submit'><Glyphicon glyph="search" /></Button>} />
           </NavBarB.Form>
           <Nav>
-            <NavItem eventKey={1} href="#"><Link to='/'>Home</Link></NavItem>
-            <NavItem eventKey={2} href="#"><Link to='/stats'>Stats</Link></NavItem>
+            <LinkContainer to={{ pathname: '/'}}>
+              <NavItem eventKey={1} href="#">Home</NavItem>
+            </LinkContainer>
+            <LinkContainer to={{ pathname: '/stats'}}>
+              <NavItem eventKey={2} href="#">Stats</NavItem>
+            </LinkContainer>
             <NavDropdown eventKey={3} title="Top 100" id="basic-nav-dropdown">
-              <MenuItem eventKey={3.1}><Link to='/top'>Top Overall</Link></MenuItem>
+              <LinkContainer to={{ pathname: '/top'}}>
+                <MenuItem eventKey={3.1} href="#">Top Overall</MenuItem>
+              </LinkContainer>
               <MenuItem eventKey={3.2}>Another action</MenuItem>
               <MenuItem eventKey={3.3}>Something else here</MenuItem>
               <MenuItem divider />
