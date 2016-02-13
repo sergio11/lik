@@ -1,22 +1,25 @@
 import request from 'superagent';
 
-export const API = {
+class API {
 
-  getJSON: (endpoint,params) => {
+  _getJSON(endpoint,params){
      return new Promise((resolve,reject) => {
         request.get(endpoint).set('Accept', 'application/json').end((err, res) => {
           !err ? resolve(res) : reject(err);
         });
      });
-  },
-  getCharacterCount: () => {
-    return this.getJSON('/api/characters/count');
-  },
-  getTopCharacters: () => {
-    return this.getJSON('/api/characters/top');
-  },
-  findCharacter: (params) => {
-    return this.getJSON('/api/characters/search',params);
   }
 
+  getCharacterCount(){
+    return this._getJSON('/api/characters/count');
+  }
+
+  getTopCharacters(){
+    return this._getJSON('/api/characters/top');
+  }
+
+  findCharacter(params){
+    return this._getJSON('/api/characters/search',params);
+  }
 }
+export default new API();

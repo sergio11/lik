@@ -8,7 +8,6 @@ import NavbarActions from '../actions/NavbarActions';
 import connectToStores from '../hoc/connectToStores';
 import socket from 'socket.io-client';
 
-@connectToStores
 class Navbar extends React.Component {
 
   static getStores() {
@@ -21,8 +20,6 @@ class Navbar extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log("Estas son las props para el NavBar");
-    console.log(props);
   }
 
   componentDidMount() {
@@ -81,4 +78,4 @@ class Navbar extends React.Component {
   }
 }
 
-export default Navbar;
+export default connectToStores(Navbar);

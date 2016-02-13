@@ -15,10 +15,8 @@ class FooterStore {
   }
 
   onGetTopCharactersFail(err) {
-    console.log("Error !!!");
+    console.log("Error");
     console.log(err);
-    // Handle multiple response formats, fallback to HTTP status code number.
-    //toastr.error(jqXhr.responseJSON && jqXhr.responseJSON.message || jqXhr.responseText || jqXhr.statusText);
   }
 
   getState(){

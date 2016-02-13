@@ -14,6 +14,7 @@ class Home extends React.Component {
     );
   }
 }
+
 Home.contextTypes = {
     i18n: React.PropTypes.object
 };

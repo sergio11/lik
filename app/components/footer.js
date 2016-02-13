@@ -5,7 +5,6 @@ import FooterStore from '../stores/FooterStore'
 import FooterActions from '../actions/FooterActions';
 import connectToStores from '../hoc/connectToStores';
 
-@connectToStores
 class Footer extends React.Component {
 
   static getStores() {
@@ -56,4 +55,4 @@ class Footer extends React.Component {
   }
 }
 
-export default Footer;
+export default connectToStores(Footer);

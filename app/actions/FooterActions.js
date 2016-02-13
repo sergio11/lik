@@ -1,5 +1,6 @@
 import alt from '../alt';
 import api from '../lib/api';
+import AppActions from '../actions/AppActions';
 
 class FooterActions {
 
@@ -14,7 +15,16 @@ class FooterActions {
     api.getTopCharacters().then((data) => {
       this.actions.getTopCharactersSuccess(data)
     }).catch((err) => {
-      this.actions.getTopCharactersFail(err)
+      this.actions.getTopCharactersFail(err);
+      //lanzamos notificación de error.
+      AppActions.throwNotification.defer({
+        id: 1,
+        title: 'Title',
+        message: 'Message',
+        type: 'error'
+      });
+
+
     })
   }
 }

@@ -31,6 +31,7 @@ const dependencies = [
   'react',
   'react-dom',
   'react-router',
+  'react-notifications',
   'underscore'
 ];
 
