@@ -21,8 +21,6 @@ class App extends React.Component {
   }
 
   handleRequestHide(notification){
-    console.log("Notificación a ocultar");
-    console.log(notification);
     AppActions.dropNotification(notification);
   };
 

@@ -18,6 +18,7 @@ class FooterStore {
     console.log("Error");
     console.log(err);
   }
+  
 
   getState(){
     return this.state;

@@ -20,7 +20,8 @@ const plugins = gulpLoadPlugins({
     'gulp-uglify': 'uglify',
     'gulp-sourcemaps': 'sourcemaps',
     'gulp-imagemin': 'imagemin',
-    'gulp-size': 'size'
+    'gulp-size': 'size',
+    'gulp-notify': 'notify'
   },
   scope: 'devDependencies'
 });
@@ -48,6 +49,9 @@ gulp.task('vendor', () => {
     'bower_components/toastr/toastr.js'
   ]).pipe(plugins.concat('vendor.js'))
     .pipe(plugins.if(production, plugins.uglify({ mangle: false })))
+    .pipe(plugins.size({
+      title: "Vendor Libraries"
+    }))
     .pipe(gulp.dest('public/js'));
 });
 
@@ -62,6 +66,10 @@ gulp.task('browserify-vendor', () => {
     .bundle()
     .pipe(source('vendor.bundle.js'))
     .pipe(plugins.if(production, plugins.streamify(plugins.uglify({ mangle: false }))))
+    .pipe(plugins.size({
+      title: "Vendor Bundle"
+    }))
+    .pipe(plugins.notify("Vendor Bundle done!"))
     .pipe(gulp.dest('public/js'));
 });
 
@@ -79,6 +87,9 @@ gulp.task('browserify', ['browserify-vendor'], () => {
     .pipe(source('bundle.js'))
     .pipe(plugins.if(production, plugins.streamify(plugins.uglify({ mangle: false }))))
     .pipe(plugins.streamify(plugins.sourcemaps.write('.')))
+    .pipe(plugins.size({
+      title: "App Bundle"
+    }))
     .pipe(gulp.dest('public/js'));
 });
 
@@ -106,7 +117,11 @@ gulp.task('browserify-watch', ['browserify-vendor'], () => {
       .pipe(source('bundle.js'))
       .pipe(plugins.streamify(plugins.sourcemaps.init({ loadMaps: true })))
       .pipe(plugins.streamify(plugins.sourcemaps.write('.')))
-      .pipe(gulp.dest('public/js/'));
+      .pipe(plugins.size({
+        title: "App Bundle"
+      }))
+      .pipe(gulp.dest('public/js/'))
+      .pipe(plugins.notify("App Bundle done!"));
   }
 });
 
@@ -140,6 +155,9 @@ gulp.task('images', () => {
 
 gulp.task('fonts', () => {
   return gulp.src('bower_components/bootstrap-sass/assets/fonts/**')
+    .pipe(plugins.size({
+      title:"Fonts"
+    }))
     .pipe(gulp.dest('public/fonts/'))
 });
 
@@ -150,10 +168,13 @@ gulp.task('fonts', () => {
  */
 gulp.task('styles', () => {
   return gulp.src('app/stylesheets/main.sass')
-    .pipe(plugins.plumber())
+    .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error in styles task: <%= error.message %>")}))
     .pipe(plugins.sass())
     .pipe(plugins.autoprefixer())
     .pipe(plugins.if(production, plugins.cssmin()))
+    .pipe(plugins.size({
+      title:"Styles"
+    }))
     .pipe(gulp.dest('public/css'));
 });
 
