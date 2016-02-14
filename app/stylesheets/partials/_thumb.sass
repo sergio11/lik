@@ -1,0 +1,31 @@
+.thumb-md
+  display: inline-block
+  width: 64px
+
+.thumb-lg
+  display: inline-block
+  width: 96px
+  margin-right: 15px
+  img
+    height: auto
+    max-width: 100%
+    vertical-align: middle
+
+.thumbnail
+  background-color: $color-white
+  padding: 0
+  border-radius: 2px
+  border-color: #dee5e7
+  box-shadow: 0 1px 1px rgba(0,0,0,.05)
+  img
+    padding: 6px
+    border-radius: 2px 2px 0 0
+    border: 0
+    background-color: #fff
+    cursor: pointer
+    transition: background-color 0.2s
+    &:hover
+      background-color: $btn-info-bg
+    &:active
+      position: relative
+      top: 2px

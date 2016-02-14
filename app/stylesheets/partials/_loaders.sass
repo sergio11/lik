@@ -1,0 +1,53 @@
+
+.triangles
+  position: absolute
+  top: 50%
+  left: 50%
+  height: $trih * 3
+  width: $triw * 3
+  transform: translate(-50%, -50%)
+  opacity: 0
+  .tri
+    position: absolute
+    animation: pulse 750ms ease-in infinite
+    border-top: $trih solid $tricolor
+    border-left: $triw/2 solid transparent
+    border-right: $triw/2 solid transparent
+    border-bottom: 0
+    &.invert
+      border-top: 0
+      border-bottom: $trih solid $tricolor
+      border-left: $triw/2 solid transparent
+      border-right: $triw/2 solid transparent
+    &:nth-child(1)
+      left: $triw
+    &:nth-child(2)
+      left: $triw/2
+      top: $trih
+      animation-delay: -125ms
+    &:nth-child(3)
+      left: $triw
+      top: $trih
+    &:nth-child(4)
+      left: $triw*1.5
+      top: $trih
+      animation-delay: -625ms
+    &:nth-child(5)
+      top: $trih*2
+      animation-delay: -250ms
+    &:nth-child(6)
+      top: $trih*2
+      left: $triw/2
+      animation-delay: -250ms
+    &:nth-child(7)
+      top: $trih*2
+      left: $triw
+      animation-delay: -375ms
+    &:nth-child(8)
+      top: $trih*2
+      left: $triw*1.5
+      animation-delay: -500ms
+    &:nth-child(9)
+      top: $trih*2
+      left: $triw*2
+      animation-delay: -500ms

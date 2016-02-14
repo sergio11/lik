@@ -1,0 +1,132 @@
+/*
+ * Character profile page styles.
+ */
+.profile
+  color: $color-white
+  background-size: cover
+  .amarr
+    background-image: url($img-profile-amarr)
+  .caldari
+    background-image: url($img-profile-caldari)
+  .gallente
+    background-image: url($img-profile-gallente)
+  .minmatar
+    background-image: url($img-profile-minmatar)
+  .navbar-default
+    background-color: transparent
+    border-bottom: 1px solid rgba(255,255,255,.15)
+    box-shadow: none
+    .navbar-brand
+      color: $color-white
+    .navbar-nav
+      .open
+        a,a:hover,a:focus
+          background-color: rgba(255,255,255,.15)
+      li
+        a
+          color: $color-white
+          &:hover,&:focus
+            color: $color-white
+            background-color: rgba(255,255,255,.15)
+  .form-control
+    color: $color-white
+    background: rgba(255,255,255,.15)
+    border-color: rgba(255,255,255,.15)
+    border-right: 0
+    &:focus
+      border-color: rgba(255,255,255,.3)
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.055),0 0 8px rgba(255,255,255,.3)
+  .input-group-btn
+    &:last-child
+      .btn
+        margin-left: 0
+  .btn-default
+    color: $color-white
+    background-color: rgba(255,255,255,.15)
+    border-color: rgba(255,255,255,.15)
+    transition: background-color .3s
+    &:focus,&:hover
+      color: $color-white
+      background-color: rgba(255,255,255,.3)
+  footer
+    color: $color-white
+    background: transparent
+    border-top: 1px solid rgba(255,255,255,.15)
+    .col-sm-5
+      border-right: 1px solid rgba(255,255,255,.15)
+
+.profile-img
+  position: relative
+  margin-bottom: 20px
+  float: left
+  width: 256px
+  height: 256px
+  box-shadow: 0 2px 25px rgba(0,0,0,.25)
+
+.profile-info
+  margin: 0 0 20px 286px
+  max-width: 405px
+  color: #fff
+
+.profile-stats
+  display: block
+  color: $color-white
+  margin: 30px 0 30px 0
+  padding: 20px 0
+  border-top: 1px solid #2098ca
+  border-bottom: 1px solid #2098ca
+  border-top: 1px solid rgba(255,255,255,.15)
+  border-bottom: 1px solid rgba(255,255,255,.15)
+  ul
+    list-style-type: none
+    li
+      position: relative
+      float: left
+      width: 33.3%
+      font-size: 16px
+      line-height: 19px
+      text-align: center
+      overflow: hidden
+      &:first-child::after
+        content: ''
+        position: absolute
+        display: block
+        top: 50%
+        right: 0
+        margin-top: -27px
+        width: 1px
+        height: 55px
+        background: rgba(255,255,255,.15)
+      &:last-child::before
+        content: ''
+        position: absolute
+        display: block
+        top: 50%
+        left: 0
+        margin-top: -27px
+        width: 1px
+        height: 55px
+        background: rgba(255,255,255,.15)
+      .stats-number
+        display: block
+        margin-bottom: 15px
+        font-size: 40px
+        font-weight: 600
+        line-height: 40px
+
+@media (max-width: 510px)
+  .profile-stats
+    font-size: 12px
+
+@media (max-width: 360px)
+  .profile-stats
+    padding: 10px 0
+    li
+      font-size: 10px
+
+@media (max-width: 360px)
+  .profile-stats
+    li
+      .stats-number
+        margin-bottom: 5px
+        font-size: 34px

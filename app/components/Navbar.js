@@ -46,8 +46,21 @@ class Navbar extends React.Component {
     return(
       <NavBarB>
         <NavBarB.Header staticTop>
+          <div className='triangles animated'>
+            <span className='tri invert'></span>
+            <span className='tri invert'></span>
+            <span className='tri'></span>
+            <span className='tri invert'></span>
+            <span className='tri invert'></span>
+            <span className='tri'></span>
+            <span className='tri invert'></span>
+            <span className='tri'></span>
+            <span className='tri invert'></span>
+          </div>
           <NavBarB.Brand>
-            <Link to='/'>LIK<Badge className='badge-up badge-danger'>{this.props.onlineUsers}</Badge></Link>
+            <Link to='/'>
+              LIK<Badge className='badge-up badge-danger'>{this.props.onlineUsers}</Badge>
+            </Link>
           </NavBarB.Brand>
           <NavBarB.Toggle />
         </NavBarB.Header>

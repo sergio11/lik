@@ -1,0 +1,30 @@
+//Dropdown menu
+.dropdown-menu
+  box-shadow: 0 2px 6px rgba(0,0,0,.1)
+  .dropdown-submenu
+    position: relative
+    &.pull-left
+      float: none
+      > .dropdown-menu
+        left: -100%
+        margin-left: 10px
+        border-radius: 6px 0 6px 6px
+    > .dropdown-menu
+      top: 0
+      left: 100%
+      margin-top: 0
+      margin-left: 1px
+      border-radius: 0 6px 6px 6px
+    &:hover > .dropdown-menu
+      display: block
+    > a:after
+      display: block
+      content: ''
+      float: right
+      width: 0
+      height: 0
+      border: 5px solid transparent
+      border-right-width: 0
+      border-left-color: #353f44
+      margin-top: 5px
+      margin-right: -10px
