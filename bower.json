@@ -25,6 +25,6 @@
     "jquery": "~2.2.0",
     "magnific-popup": "^1.0.1",
     "bootstrap-sass": "^3.3.6",
-    "animate.css": "^3.5.1"
+    "animate-sass": "^0.6.6"
   }
 }

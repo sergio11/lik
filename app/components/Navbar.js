@@ -46,16 +46,16 @@ class Navbar extends React.Component {
     return(
       <NavBarB>
         <NavBarB.Header staticTop>
-          <div className='triangles animated'>
-            <span className='tri invert'></span>
-            <span className='tri invert'></span>
-            <span className='tri'></span>
-            <span className='tri invert'></span>
-            <span className='tri invert'></span>
-            <span className='tri'></span>
-            <span className='tri invert'></span>
-            <span className='tri'></span>
-            <span className='tri invert'></span>
+          <div className='triangles fadeIn animated'>
+            <span className='tri invert animated'></span>
+            <span className='tri invert animated'></span>
+            <span className='tri animated'></span>
+            <span className='tri invert animated'></span>
+            <span className='tri invert animated'></span>
+            <span className='tri animated'></span>
+            <span className='tri invert animated'></span>
+            <span className='tri animated'></span>
+            <span className='tri invert animated'></span>
           </div>
           <NavBarB.Brand>
             <Link to='/'>
