@@ -21,7 +21,8 @@ const plugins = gulpLoadPlugins({
     'gulp-sourcemaps': 'sourcemaps',
     'gulp-imagemin': 'imagemin',
     'gulp-size': 'size',
-    'gulp-notify': 'notify'
+    'gulp-notify': 'notify',
+    'gulp-if-else': 'ifElse'
   },
   scope: 'devDependencies'
 });
@@ -33,7 +34,10 @@ const dependencies = [
   'react-dom',
   'react-router',
   'react-notifications',
-  'underscore'
+  'underscore',
+  'react-bootstrap',
+  'react-router-bootstrap',
+  'socket.io-client'
 ];
 
 /*
@@ -44,15 +48,13 @@ const dependencies = [
 gulp.task('vendor', () => {
   return gulp.src([
     'bower_components/jquery/dist/jquery.js',
-    'bower_components/bootstrap/dist/js/bootstrap.js',
-    'bower_components/magnific-popup/dist/jquery.magnific-popup.js',
-    'bower_components/toastr/toastr.js'
+    'bower_components/magnific-popup/dist/jquery.magnific-popup.js'
   ]).pipe(plugins.concat('vendor.js'))
     .pipe(plugins.if(production, plugins.uglify({ mangle: false })))
+    .pipe(gulp.dest('public/js'))
     .pipe(plugins.size({
       title: "Vendor Libraries"
     }))
-    .pipe(gulp.dest('public/js'));
 });
 
 /*
@@ -66,11 +68,11 @@ gulp.task('browserify-vendor', () => {
     .bundle()
     .pipe(source('vendor.bundle.js'))
     .pipe(plugins.if(production, plugins.streamify(plugins.uglify({ mangle: false }))))
+    .pipe(gulp.dest('public/js'))
     .pipe(plugins.size({
       title: "Vendor Bundle"
     }))
-    .pipe(plugins.notify("Vendor Bundle done!"))
-    .pipe(gulp.dest('public/js'));
+    .pipe(plugins.notify("Vendor Bundle done!"));
 });
 
 /*
@@ -87,10 +89,10 @@ gulp.task('browserify', ['browserify-vendor'], () => {
     .pipe(source('bundle.js'))
     .pipe(plugins.if(production, plugins.streamify(plugins.uglify({ mangle: false }))))
     .pipe(plugins.streamify(plugins.sourcemaps.write('.')))
+    .pipe(gulp.dest('public/js'))
     .pipe(plugins.size({
       title: "App Bundle"
     }))
-    .pipe(gulp.dest('public/js'));
 });
 
 /*
@@ -117,12 +119,29 @@ gulp.task('browserify-watch', ['browserify-vendor'], () => {
       .pipe(source('bundle.js'))
       .pipe(plugins.streamify(plugins.sourcemaps.init({ loadMaps: true })))
       .pipe(plugins.streamify(plugins.sourcemaps.write('.')))
+      .pipe(gulp.dest('public/js/'))
       .pipe(plugins.size({
         title: "App Bundle"
       }))
-      .pipe(gulp.dest('public/js/'))
       .pipe(plugins.notify("App Bundle done!"));
   }
+});
+
+
+gulp.task('copy', () => {
+
+  return gulp.src([
+    'node_modules/**/*.(css|eot|svg|ttf|woff)'
+  ])
+  .pipe(plugins.size({
+    title: 'vendor assets'
+  }))
+  .pipe(plugins.ifElse('*.css',() => {
+    return gulp.dest('public/css')
+  },() => {
+     return gulp.dest('public/fonts/')
+  }))
+
 });
 
 
@@ -155,10 +174,10 @@ gulp.task('images', () => {
 
 gulp.task('fonts', () => {
   return gulp.src('bower_components/bootstrap-sass/assets/fonts/**')
+    .pipe(gulp.dest('public/fonts/'))
     .pipe(plugins.size({
       title:"Fonts"
     }))
-    .pipe(gulp.dest('public/fonts/'))
 });
 
 /*
@@ -172,15 +191,15 @@ gulp.task('styles', () => {
     .pipe(plugins.sass())
     .pipe(plugins.autoprefixer())
     .pipe(plugins.if(production, plugins.cssmin()))
+    .pipe(gulp.dest('public/css'))
     .pipe(plugins.size({
       title:"Styles"
     }))
-    .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('watch', () => {
   gulp.watch('app/stylesheets/**/*.sass', ['styles']);
 });
 
-gulp.task('default', ['styles','fonts', 'images','vendor', 'browserify-watch', 'watch']);
-gulp.task('build', ['styles', 'images','vendor', 'browserify']);
+gulp.task('default', ['styles','fonts','copy', 'images','vendor', 'browserify-watch', 'watch']);
+gulp.task('build', ['styles', 'fonts','copy','images','vendor', 'browserify']);

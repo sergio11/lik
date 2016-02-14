@@ -20,11 +20,12 @@ class Navbar extends React.Component {
 
   constructor(props) {
     super(props);
+    console.log("Estas son las props del Navbar")
   }
 
   componentDidMount() {
     console.log("Abriendo Socket ...");
-    let client = socket('http://localhost');
+    let client = socket('http://localhost:3000');
     client.on('connect', () => {
       console.log("Estoy conectado vamos!!!!");
     });
