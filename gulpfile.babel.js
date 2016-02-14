@@ -21,8 +21,7 @@ const plugins = gulpLoadPlugins({
     'gulp-sourcemaps': 'sourcemaps',
     'gulp-imagemin': 'imagemin',
     'gulp-size': 'size',
-    'gulp-notify': 'notify',
-    'gulp-if-else': 'ifElse'
+    'gulp-notify': 'notify'
   },
   scope: 'devDependencies'
 });
@@ -127,19 +126,20 @@ gulp.task('browserify-watch', ['browserify-vendor'], () => {
   }
 });
 
-
+/*
+ |--------------------------------------------------------------------------
+ | Copy vendor assets
+ |--------------------------------------------------------------------------
+ */
 gulp.task('copy', () => {
 
   return gulp.src([
-    'node_modules/**/*.(css|eot|svg|ttf|woff)'
+    'node_modules/**/dist/fonts/*',
+    'node_modules/**/dist/*.css',
   ])
+  .pipe(gulp.dest('public/vendor/'))
   .pipe(plugins.size({
     title: 'vendor assets'
-  }))
-  .pipe(plugins.ifElse('*.css',() => {
-    return gulp.dest('public/css')
-  },() => {
-     return gulp.dest('public/fonts/')
   }))
 
 });
