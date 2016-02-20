@@ -31,6 +31,7 @@ class NavbarStore {
 
   onGetCharacterCountFail(err) {}
 
+
   getState(){
     return this.state;
   }

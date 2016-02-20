@@ -35,6 +35,7 @@ class AddCharacterStore {
     this.state.character_name.status = 'valid';
   }
 
+
   getState(){
     return this.state;
   }

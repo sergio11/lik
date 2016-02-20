@@ -5,19 +5,21 @@ export var connectToStores = Component => class extends React.Component {
 
     constructor(props) {
         super(props);
-        this.subs = [];
+        this.subs = {};
         this.props = props;
         this.state = Component.getState();
     }
 
     componentDidMount() {
         for (let store of Component.getStores()) {
-            this.subs.push(store.listen(this.__onStoreChange.bind(this)));
+          this.subs[store.displayName] = store.listen(this.__onStoreChange.bind(this));
         }
     }
 
     componentWillUnmount() {
-        this.subs.forEach(s => s.unlisten(this.__onStoreChange));
+      for (let store of Component.getStores()) {
+        store.unlisten(this.subs[store.displayName]);
+      }
     }
 
     __onStoreChange() {
