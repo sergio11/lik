@@ -44,7 +44,7 @@ class Navbar extends React.Component {
 
   render() {
     return(
-      <NavBarB>
+      <NavBarB inverse>
         <NavBarB.Header staticTop>
           <div className='triangles fadeIn animated'>
             <span className='tri invert animated'></span>
