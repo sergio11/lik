@@ -18,8 +18,9 @@ class Navbar extends React.Component {
       return NavbarStore.getState();
   }
 
-  constructor(props) {
-    super(props);
+  constructor(props,context) {
+    super(props,context);
+    this.i18n = context.i18n;
     console.log("Estas son las props del Navbar")
   }
 
@@ -84,6 +85,9 @@ class Navbar extends React.Component {
               <MenuItem divider />
               <MenuItem eventKey={3.3}>Separated link</MenuItem>
             </NavDropdown>
+            <LinkContainer to={{ pathname: '/add'}}>
+              <NavItem eventKey={4} href="#">{this.i18n.t('navbar.add_character')}</NavItem>
+            </LinkContainer>
           </Nav>
         </NavBarB.Collapse>
       </NavBarB>
@@ -91,5 +95,9 @@ class Navbar extends React.Component {
     );
   }
 }
+
+Navbar.contextTypes = {
+    i18n: React.PropTypes.object
+};
 
 export default connectToStores(Navbar);
