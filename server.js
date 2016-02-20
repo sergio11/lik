@@ -1,18 +1,23 @@
 // Babel ES6/JSX Compiler
 require('babel-register');
-
+//Core Node.js modules
+var path = require('path');
+//Third-party NPM libraries
+var bodyParser = require('body-parser');
 var swig  = require('swig');
 var React = require('react');
 var ReactDOM = require('react-dom/server');
 var Router = require('react-router');
-var routes = require('./app/routes');
 var express = require('express');
-var path = require('path');
 var logger = require('morgan');
-var bodyParser = require('body-parser');
 var Rosetta = require('@schibstedspain/rosetta');
 var Polyglot = require('@schibstedspain/rosetta/lib/adapters/polyglot')
+var mongoose = require('mongoose');
+//Application files
+var routes = require('./app/routes');
 var languages = require('./app/languages').default;
+var Character = require('./models/character');
+var config = require('./config');
 
 const i18n = new Rosetta.default({adapter: new Polyglot()});
 i18n.languages = languages;
@@ -21,11 +26,19 @@ RouterContexti18n = i18n.addToContext(Router.RouterContext);
 
 var app = express();
 
+mongoose.connect(config.database);
+mongoose.connection.on('error', function() {
+  console.info('Error: Could not connect to MongoDB. Did you forget to run `mongod`?');
+});
+
+
 app.set('port', process.env.PORT || 3000);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 //Routing middleware
 app.use(function(req, res) {
   Router.match({ routes: routes.default, location: req.url }, function(err, redirectLocation, renderProps) {
