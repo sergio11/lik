@@ -36,7 +36,8 @@ const dependencies = [
   'underscore',
   'react-bootstrap',
   'react-router-bootstrap',
-  'socket.io-client'
+  'socket.io-client',
+  'request-promise'
 ];
 
 /*
