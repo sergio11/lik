@@ -16,8 +16,8 @@ var mongoose = require('mongoose');
 //Application files
 var routes = require('./app/routes');
 var languages = require('./app/languages').default;
-var Character = require('./models/character');
 var config = require('./config');
+var addNewCharacter = require('./middleware/addNewCharacter').default;
 
 const i18n = new Rosetta.default({adapter: new Polyglot()});
 i18n.languages = languages;
@@ -38,6 +38,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+/**
+ * POST /api/characters
+ * Adds new character to the database.
+ */
+app.post('/api/characters', addNewCharacter);
 
 //Routing middleware
 app.use(function(req, res) {

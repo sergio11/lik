@@ -19,12 +19,18 @@ class AddCharacterActions {
       name: name,
       gender: gender
     }).then((response) => {
+      console.log(response);
         this.actions.addCharacterSuccess();
+        //lanzamos notificación de error.
+        AppActions.throwNotification.defer({
+          title: 'Add Character',
+          message: 'Character has been added sucesfully!' ,
+          type: 'success'
+        });
     }).catch((err) => {
       this.actions.addCharacterFail();
       //lanzamos notificación de error.
       AppActions.throwNotification.defer({
-        id: 2,
         title: 'Title',
         message: 'Error al crear personje',
         type: 'error'
