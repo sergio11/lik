@@ -1,6 +1,7 @@
 import request from 'request-promise';
 import bluebird from 'bluebird';
 import xml2js from 'xml2js';
+import httpError from 'http-errors';
 import Character from '../models/character';
 
 let xml2jsfy = bluebird.promisifyAll(xml2js);
@@ -28,7 +29,7 @@ function getCharacterId(characterName){
   .then(res =>  {
     let id = res.eveapi.result[0].rowset[0].row[0].$.characterID;
     if(!parseInt(id))
-      throw new Error("Character Not Found");
+      throw httpError(404, 'Character Not Found');
     return id;
   });
 
