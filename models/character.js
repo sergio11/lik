@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bluebird from 'bluebird';
 //Representation of Character in MongoDB
 let characterSchema = new mongoose.Schema({
   characterId: {
@@ -44,4 +45,11 @@ a model on the other hand is a more practical object with methods to query,
 remove, update and save data from/to MongoDB.
 Above, we create a Character model and immediately export it
 */
-export default mongoose.model('Character', characterSchema);
+
+
+
+let Character = mongoose.model('Character', characterSchema);
+bluebird.promisifyAll(Character);
+bluebird.promisifyAll(Character.prototype);
+
+export default Character;

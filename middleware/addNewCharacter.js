@@ -2,14 +2,12 @@ import request from 'request-promise';
 import bluebird from 'bluebird';
 import xml2js from 'xml2js';
 import httpError from 'http-errors';
-import Character from '../models/character';
+import {Character} from '../models/character';
 
 let xml2jsfy = bluebird.promisifyAll(xml2js);
-let Characterfy = bluebird.promisifyAll(Character,{suffix: "Async"});
-
 
 function userExistenceCheck(id){
-    return Characterfy.findOneAsync({ characterId: id }).then(character => {
+    return Character.findOneAsync({ characterId: id }).then(character => {
       return character ? true : false;
     });
 }
