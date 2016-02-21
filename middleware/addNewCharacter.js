@@ -25,7 +25,12 @@ function getCharacterId(characterName){
     },
     transform: xml  => xml2jsfy.parseStringAsync(xml)
   })
-  .then(res =>  res.eveapi.result[0].rowset[0].row[0].$.characterID);
+  .then(res =>  {
+    let id = res.eveapi.result[0].rowset[0].row[0].$.characterID;
+    if(!parseInt(id))
+      throw new Error("Character Not Found");
+    return id;
+  });
 
 }
 

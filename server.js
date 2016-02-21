@@ -63,6 +63,13 @@ app.use(function(req, res) {
   });
 });
 
+//Error handling middleware
+app.use(function(err, req, res, next) {
+  console.error(err.message);
+  res.status(err.status || 500);
+  res.send({ message: err.message });
+});
+
 /**
  * Socket.io stuff.
  */
