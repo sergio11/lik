@@ -19,15 +19,15 @@ class AddCharacterActions {
       name: name,
       gender: gender
     }).then((response) => {
-      console.log(response);
         this.actions.addCharacterSuccess();
         //lanzamos notificación de error.
         AppActions.throwNotification.defer({
           title: 'Add Character',
-          message: 'Character has been added sucesfully!' ,
+          message: response.message ,
           type: 'success'
         });
     }).catch((err) => {
+      console.log(err);
       this.actions.addCharacterFail();
       //lanzamos notificación de error.
       AppActions.throwNotification.defer({

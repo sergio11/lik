@@ -1,16 +1,20 @@
-import request from 'superagent';
+import request from 'request-promise';
 
 class API {
 
   _sendRequest(type,endpoint,params){
-     return new Promise((resolve,reject) => {
-       ( type == 'post' ? request.post(endpoint) : request.get(endpoint))
-       .send(params)
-       .set('Accept', 'application/json')
-       .end((err, res) => {
-          !err ? resolve(res) : reject(err);
-        });
-     });
+
+    let options = {};
+    options.method = type || 'GET';
+    options.uri = 'http://localhost:3000'+endpoint;
+    if(type == 'GET'){
+      options.qs = params;
+    }else{
+      options.body = params
+    }
+    options.json = true
+
+    return request(options)
   }
 
   getCharacterCount(){
