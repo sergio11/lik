@@ -1,6 +1,6 @@
 import alt from '../alt';
 import api from '../lib/api';
-import {assign} from 'underscore';
+import _ from 'lodash';
 
 class NavbarActions {
   constructor() {
@@ -19,7 +19,7 @@ class NavbarActions {
     api.findCharacter({
       name: payload.searchQuery
     }).then((data) => {
-      assign(payload, data);
+      _.assign(payload, data);
       this.actions.findCharacterSuccess(payload);
     }).catch((err) => {
       this.actions.findCharacterFail(payload);

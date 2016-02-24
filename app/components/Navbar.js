@@ -6,7 +6,7 @@ import {LinkContainer} from  'react-router-bootstrap';
 import NavbarStore from '../stores/NavbarStore';
 import NavbarActions from '../actions/NavbarActions';
 import connectToStores from '../hoc/connectToStores';
-import socket from 'socket.io-client';
+import socket from 'socket.io/lib/client';
 
 class Navbar extends React.Component {
 

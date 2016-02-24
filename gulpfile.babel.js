@@ -29,15 +29,17 @@ const plugins = gulpLoadPlugins({
 const production = process.env.NODE_ENV === 'production';
 const dependencies = [
   'alt',
+  '@schibstedspain/rosetta',
   'react',
   'react-dom',
   'react-router',
   'react-notifications',
-  'underscore',
+  'lodash',
   'react-bootstrap',
   'react-router-bootstrap',
-  'socket.io-client',
-  'request-promise'
+  'bluebird',
+  'request-promise',
+  'socket.io/lib/client'
 ];
 
 /*
@@ -64,6 +66,7 @@ gulp.task('vendor', () => {
  */
 gulp.task('browserify-vendor', () => {
   return browserify()
+    .ignore('cls-bluebird')
     .require(dependencies)
     .bundle()
     .pipe(source('vendor.bundle.js'))
