@@ -40,7 +40,7 @@ const dependencies = [
   'react-background-video',
   'bluebird',
   'request-promise',
-  'socket.io/lib/client'
+  'socket.io-client'
 ];
 
 /*

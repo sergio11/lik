@@ -6,7 +6,7 @@ import {LinkContainer} from  'react-router-bootstrap';
 import NavbarStore from '../stores/NavbarStore';
 import NavbarActions from '../actions/NavbarActions';
 import connectToStores from '../hoc/connectToStores';
-import socket from 'socket.io/lib/client';
+import socket from 'socket.io-client';
 
 class Navbar extends React.Component {
 
@@ -23,9 +23,9 @@ class Navbar extends React.Component {
     this.i18n = context.i18n;
     console.log("Estas son las props del Navbar")
   }
+ 
 
   componentDidMount() {
-    console.log("Abriendo Socket ...");
     let client = socket('http://localhost:3000');
     client.on('connect', () => {
       console.log("Estoy conectado vamos!!!!");
