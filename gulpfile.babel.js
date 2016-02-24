@@ -37,6 +37,7 @@ const dependencies = [
   'lodash',
   'react-bootstrap',
   'react-router-bootstrap',
+  'react-background-video',
   'bluebird',
   'request-promise',
   'socket.io/lib/client'
@@ -149,6 +150,9 @@ gulp.task('copy', () => {
 });
 
 
+
+
+
 /*
   /--------------------------------------------------------------------------
   / JPG and PNG image optimization
@@ -186,6 +190,20 @@ gulp.task('fonts', () => {
 
 /*
  |--------------------------------------------------------------------------
+ | Copy Video files
+ |--------------------------------------------------------------------------
+*/
+
+gulp.task('videos', () => {
+  return gulp.src('./app/videos/*')
+    .pipe(gulp.dest('public/videos/'))
+    .pipe(plugins.size({
+      title:"Videos"
+    }))
+});
+
+/*
+ |--------------------------------------------------------------------------
  | Compile sass stylesheets.
  |--------------------------------------------------------------------------
  */
@@ -205,5 +223,5 @@ gulp.task('watch', () => {
   gulp.watch('app/stylesheets/**/*.sass', ['styles']);
 });
 
-gulp.task('default', ['styles','fonts','copy', 'images','vendor', 'browserify-watch', 'watch']);
-gulp.task('build', ['styles', 'fonts','copy','images','vendor', 'browserify']);
+gulp.task('default', ['styles','fonts','copy', 'images','videos','vendor', 'browserify-watch', 'watch']);
+gulp.task('build', ['styles', 'fonts','copy','images','videos','vendor', 'browserify']);

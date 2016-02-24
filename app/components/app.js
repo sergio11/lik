@@ -1,4 +1,5 @@
 import React from 'react';
+import BackgroundVideo from 'react-background-video';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Notifications from 'react-notifications';
@@ -25,13 +26,22 @@ class App extends React.Component {
   };
 
   render() {
-    return (
-      <div>
-        <Navbar />
-        <Notifications notifications={this.props.notifications} onRequestHide={this.handleRequestHide.bind(this)}/>
-        {this.props.children}
-        <Footer />
-      </div>
+      
+      const videos = [{
+          src: 'videos/video_1.mp4',
+          type: 'video/mp4'
+      },{
+          src: 'videos/video_1.ogg',
+          type: 'video/ogg'
+      }];
+      
+      return (
+        <BackgroundVideo videos={videos} autoPlay loop poster='img/fondo.jpg' muted>
+            <Navbar />
+            <Notifications notifications={this.props.notifications} onRequestHide={this.handleRequestHide.bind(this)}/>
+            {this.props.children}
+            <Footer />
+        </BackgroundVideo>
     );
   }
 }
