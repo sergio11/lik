@@ -23,9 +23,7 @@ class FooterActions {
         message: 'Message',
         type: 'error'
       });
-
-
-    })
+    });
   }
 }
 

@@ -32,5 +32,15 @@ class API {
   addCharacter(params){
     return this._sendRequest('post','/api/characters',params);
   }
+  
+  getTwoCharacters(){
+      return this._sendRequest('/api/characters'); 
+  }
+  
+  vote(params){
+      return this._sendRequest('put','/api/characters',params);
+  }
+  
+  
 }
 export default new API();

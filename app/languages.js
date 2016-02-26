@@ -1,8 +1,10 @@
 export default {
   'es': {
-    'greeting': 'Hola Mundo',
     'navbar':{
       'add_character': 'Añadir'
+    },
+    'home':{
+       'title': 'Haga clic en el retrato. Seleccione su favorito .'  
     },
     'add_character':{
       'panel_title': 'Añadir nuevo personaje',
@@ -20,9 +22,11 @@ export default {
     }
   },
   'en': {
-    'greeting': 'Hello World',
     'navbar':{
       'add_character': 'Add'
+    },
+    'home': {
+       'title': 'Click on the portrait. Select your favorite.'  
     },
     'add_character':{
       'panel_title': 'Add Character',
