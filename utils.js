@@ -2,7 +2,7 @@ import request from 'request-promise';
 import bluebird from 'bluebird';
 import xml2js from 'xml2js';
 import httpError from 'http-errors';
-import {Character} from '../models/character';
+import Character from './models/character';
 
 let xml2jsfy = bluebird.promisifyAll(xml2js);
 
@@ -15,7 +15,7 @@ function userExistenceCheck(id){
 //return res.status(400).send({ message: 'XML Parse Error' });
 //return res.status(409).send({ message: character.name + ' is already in the database.' });
 //res.status(404).send({ message: characterName + ' is not a registered citizen of New Eden.' });
-function getCharacterId(characterName){
+export const getCharacterId = function(characterName){
   let characterIdLookupUrl = 'https://api.eveonline.com/eve/CharacterID.xml.aspx';
   return request({
     uri:characterIdLookupUrl,
@@ -31,9 +31,9 @@ function getCharacterId(characterName){
     return id;
   });
 
-}
+};
 
-function getCharacterInfo(id){
+export const getCharacterInfo = function(id){
     var characterInfoUrl = 'https://api.eveonline.com/eve/CharacterInfo.xml.aspx';
     return request({
       uri:characterInfoUrl,
@@ -51,36 +51,3 @@ function getCharacterInfo(id){
     });
 }
 
-
-
-export default function(req, res, next) {
-  //get gender
-  var gender = req.body.gender;
-  //get character name
-  var characterName = req.body.name;
-  //making HTTP requests to the EVE Online API to get character id.
-  getCharacterId(characterName)
-  .then(getCharacterInfo)
-  .then((info) => {
-    console.log("Save the character with info");
-    console.log(info);
-    res.send({ message: characterName + ' has been added successfully!' });
-    //Save the character
-    /*var character = new Character({
-      characterId: characterId,
-      name: name,
-      race: race,
-      bloodline: bloodline,
-      gender: gender,
-      random: [Math.random(), 0]
-    });
-
-    character.save(function(err) {
-      if (err) return next(err);
-      res.send({ message: characterName + ' has been added successfully!' });
-    });*/
-  }).catch((error => {
-    return next(error);
-  }))
-
-};
