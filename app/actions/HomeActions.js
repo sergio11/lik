@@ -23,8 +23,6 @@ class HomeActions {
       })
       .catch((err) => {
         this.actions.getTwoCharactersFail(err);
-        console.log("Error al obtener personajes");
-        console.log(err);
          //lanzamos notificación de error.
         AppActions.throwNotification.defer({
             id: 2,
@@ -51,11 +49,11 @@ class HomeActions {
           this.actions.voteFail(err);
           //lanzamos notificación de error.
           AppActions.throwNotification.defer({
-                id: 3,
-                title: 'Error al realizar voto',
-                message: 'Error al realizar el voto',
-                type: 'error'
-            });
+             id: 3,
+             title: 'Error al realizar voto',
+             message: 'Error al realizar el voto',
+             type: 'error'
+          });
       });
   }
   

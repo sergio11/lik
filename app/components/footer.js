@@ -20,7 +20,7 @@ class Footer extends React.Component {
   }
 
   componentDidMount() {
-    //FooterActions.getTopCharacters();
+    FooterActions.getTopCharacters();
   }
 
   render() {

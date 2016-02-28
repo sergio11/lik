@@ -141,32 +141,25 @@ router.get('/count', function(req, res, next) {
 
 
 /**
- * GET /api/characters/top
- * Return 100 highest ranked characters. Filter by gender, race and bloodline.
+ * GET /api/characters/top/:count
+ * Return :count highest ranked characters. Filter by gender, race and bloodline.
  */
-router.get('/top', function(req, res, next) {
-  var params = req.query;
-  var conditions = {};
-
-  _.each(params, function(value, key) {
-    conditions[key] = new RegExp('^' + value + '$', 'i');
-  });
-
-  Character
-    .find(conditions)
-    .sort('-wins')
-    .limit(100)
-    .exec(function(err, characters) {
-      if (err) return next(err);
-
-      characters.sort(function(a, b) {
-        if (a.wins / (a.wins + a.losses) < b.wins / (b.wins + b.losses)) { return 1; }
-        if (a.wins / (a.wins + a.losses) > b.wins / (b.wins + b.losses)) { return -1; }
-        return 0;
-      });
-
-      res.send(characters);
-    });
+router.get('/top/:count?', function(req, res, next) {
+   let count =  req.params.count || 100;
+   
+   CharactersDAO
+    .getTopCharacters(count,'-wins')
+    .then(characters => {
+        characters.sort((a, b) => {
+            if (a.wins / (a.wins + a.losses) < b.wins / (b.wins + b.losses)) { return 1; }
+            if (a.wins / (a.wins + a.losses) > b.wins / (b.wins + b.losses)) { return -1; }
+            return 0;
+        });
+        res.send(characters);
+    })
+    .catch(err => {
+        next(err);
+    })
 });
 
 /**

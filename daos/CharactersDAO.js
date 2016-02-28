@@ -23,6 +23,13 @@ class CharactersDAO {
         return Character.findOneAsync({ characterId: id });
     }
     
+    getTopCharacters(count,orderBy){
+       return Character.find()
+              .sort(orderBy)
+              .limit(count)
+              .execAsync();
+    }
+    
 };
 
 export default new CharactersDAO();
