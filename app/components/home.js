@@ -31,34 +31,32 @@ class Home extends React.Component {
     HomeActions.vote(winner, loser);
   }
   
-  
-  renderCharacters(){
-      
-      return this.props.characters.map((character,index) => {
-                        
-          <div key={character.characterId} className={index === 0 ? 'col-xs-6 col-sm-6 col-md-5 col-md-offset-1' : 'col-xs-6 col-sm-6 col-md-5'}>
-               <Thumbnail onClick={this.handleClick.bind(this, character)} className="fadeInUp animated" src="/assets/thumbnaildiv.png" alt="242x200">
-                  <h3 className='caption text-center'>Thumbnail label</h3>
-                  <ul className='list-inline'>
-                       <li><strong>Race:</strong> {character.race}</li>
-                       <li><strong>Bloodline:</strong> {character.bloodline}</li>
-                  </ul>
-                  <h4>
-                     <Link to={'/characters/' + character.characterId}><strong>{character.name}</strong></Link>
-                  </h4>
-               </Thumbnail>
-           </div> 
-      });
-      
-  }
-
   render() {
             
     return (
         <Grid>
             <h3 className='text-center'>{this.i18n.t('home.title')}</h3>
             <Row>
-                {this.renderCharacters()}
+                {
+          
+                    this.props.characters.map((character, index) => {
+                        return (
+                            <div key={character.characterId} className={index === 0 ? 'col-xs-6 col-sm-6 col-md-5 col-md-offset-1' : 'col-xs-6 col-sm-6 col-md-5'}>
+                                <Thumbnail onClick={this.handleClick.bind(this, character)} className="fadeInUp animated" src={'http://image.eveonline.com/Character/' + character.characterId + '_512.jpg'} alt={character.name}>
+                                        <h3 className='caption text-center'>{character.name}</h3>
+                                        <ul className='list-inline'>
+                                            <li><strong>Race:</strong> {character.race}</li>
+                                            <li><strong>Bloodline:</strong> {character.bloodline}</li>
+                                        </ul>
+                                        <h4>
+                                            <Link to={'/characters/' + character.characterId}><strong>{character.name}</strong></Link>
+                                        </h4>
+                                    </Thumbnail>
+                                </div> 
+                            )
+                        })
+                    
+                }
             </Row>
          </Grid>
         );

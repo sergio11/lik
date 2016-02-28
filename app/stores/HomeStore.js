@@ -13,6 +13,7 @@ class HomeStore {
     
     onGetTwoCharactersSuccess(data) {
         this.state.characters = data;
+        console.log(this.state.characters);
     }
 
     onGetTwoCharactersFail(err) {}
@@ -20,7 +21,7 @@ class HomeStore {
     onVoteFail(err) {}
     
     getState(){
-        return this.state ;
+        return this.state;
     }
 }
 

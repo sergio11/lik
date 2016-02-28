@@ -15,8 +15,6 @@ class HomeActions {
       api.getTwoCharacters()
       .then((data) => {
         this.actions.getTwoCharactersSuccess(data);
-        console.log("Personajes Obtenidos");
-        console.log(data);
       })
       .catch((err) => {
         this.actions.getTwoCharactersFail(err);
