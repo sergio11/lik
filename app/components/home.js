@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 import { Grid, Row, Thumbnail} from 'react-bootstrap';
+import Loader  from 'react-loader';
 import _ from 'lodash';
 import HomeActions from '../actions/HomeActions';
 import HomeStore from '../stores/HomeStore';
@@ -22,7 +23,11 @@ class Home extends React.Component {
   }
   
   componentDidMount() {
-    HomeActions.getTwoCharacters();
+      HomeActions.getTwoCharacters();
+  }
+  
+  componentWillUnmount() {
+      HomeActions.setCharacterLoaded(false);
   }
   
   handleClick(character) {
@@ -35,28 +40,30 @@ class Home extends React.Component {
             
     return (
         <Grid>
-            <h3 className='text-center'>{this.i18n.t('home.title')}</h3>
             <Row>
+                <h3 className='text-center col-xs-12'>{this.i18n.t('home.title')}</h3>
+            </Row>
+            <Row>
+                <Loader loaded={this.props.loaded} width={10} color='#fff'>
                 {
-          
                     this.props.characters.map((character, index) => {
                         return (
-                            <div key={character.characterId} className={index === 0 ? 'col-xs-6 col-sm-6 col-md-5 col-md-offset-1' : 'col-xs-6 col-sm-6 col-md-5'}>
+                           <div key={character.characterId} className={index === 0 ? 'col-xs-6 col-sm-6 col-md-5 col-md-offset-1' : 'col-xs-6 col-sm-6 col-md-5'}>
                                 <Thumbnail onClick={this.handleClick.bind(this, character)} className="fadeInUp animated" src={'http://image.eveonline.com/Character/' + character.characterId + '_512.jpg'} alt={character.name}>
-                                        <h3 className='caption text-center'>{character.name}</h3>
-                                        <ul className='list-inline'>
-                                            <li><strong>Race:</strong> {character.race}</li>
-                                            <li><strong>Bloodline:</strong> {character.bloodline}</li>
-                                        </ul>
-                                        <h4>
-                                            <Link to={'/characters/' + character.characterId}><strong>{character.name}</strong></Link>
-                                        </h4>
-                                    </Thumbnail>
-                                </div> 
-                            )
-                        })
-                    
-                }
+                                    <h3 className='caption text-center'>{character.name}</h3>
+                                    <ul className='list-inline'>
+                                        <li><strong>Race:</strong> {character.race}</li>
+                                        <li><strong>Bloodline:</strong> {character.bloodline}</li>
+                                    </ul>
+                                    <h4>
+                                        <Link to={'/characters/' + character.characterId}><strong>{character.name}</strong></Link>
+                                    </h4>
+                                 </Thumbnail>
+                             </div> 
+                         )
+                     })
+                 }
+                </Loader>
             </Row>
          </Grid>
         );

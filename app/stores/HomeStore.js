@@ -7,16 +7,23 @@ class HomeStore {
         /*bindActions is a magic Alt method which binds actions to their handlers defined in the store.*/
         this.bindActions(HomeActions);
         this.state = {
-            characters: []
+            characters: [],
+            loaded: false
         };
     }
     
+    onSetCharacterLoaded(val){
+        this.state.loaded = val;
+    }
+    
     onGetTwoCharactersSuccess(data) {
+        this.state.loaded = true;
         this.state.characters = data;
-        console.log(this.state.characters);
     }
 
     onGetTwoCharactersFail(err) {}
+    
+    
 
     onVoteFail(err) {}
     

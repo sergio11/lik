@@ -5,13 +5,18 @@ import AppActions from '../actions/AppActions';
 class HomeActions {
   constructor() {
     this.generateActions(
-      'getTwoCharactersSuccess',
-      'getTwoCharactersFail',
-      'voteFail'
+        'getTwoCharactersSuccess',
+        'getTwoCharactersFail',
+        'voteFail'
     );
   }
   
+  setCharacterLoaded(val){
+      return val;
+  }
+  
   getTwoCharacters() {
+      
       api.getTwoCharacters()
       .then((data) => {
         this.actions.getTwoCharactersSuccess(data);

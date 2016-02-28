@@ -34,6 +34,7 @@ const dependencies = [
   'react-dom',
   'react-router',
   'react-notifications',
+  'react-loader',
   'lodash',
   'react-bootstrap',
   'react-router-bootstrap',
