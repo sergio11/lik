@@ -8,6 +8,7 @@ import NavbarActions from '../actions/NavbarActions';
 import connectToStores from '../hoc/connectToStores';
 import socket from 'socket.io-client';
 
+
 class Navbar extends React.Component {
 
   static getStores() {
@@ -45,6 +46,7 @@ class Navbar extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
   }
+  
 
   render() {
     return(
@@ -70,7 +72,7 @@ class Navbar extends React.Component {
         </NavBarB.Header>
         <NavBarB.Collapse>
           <NavBarB.Form pullLeft onSubmit={this.handleSubmit.bind(this)}>
-            <Input type="text" placeholder={this.props.totalCharacters + ' characters'} value={this.props.searchQuery} onChange={NavbarActions.updateSearchQuery} buttonAfter={<Button type='submit'><Glyphicon glyph="search" /></Button>} />
+            <Input type="text"  placeholder={this.props.totalCharacters + ' characters'} value={this.props.searchQuery} onChange={NavbarActions.updateSearchQuery} buttonAfter={<Button type='submit'><Glyphicon glyph="search" /></Button>} />
           </NavBarB.Form>
           <Nav>
             <LinkContainer to={{ pathname: '/'}}>

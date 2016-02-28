@@ -31,9 +31,9 @@ class Home extends React.Component {
   }
   
   handleClick(character) {
-    var winner = character.characterId;
-    var loser = _.head(_.without(this.props.characters,[character])).characterId;
-    HomeActions.vote(winner, loser);
+      let winner = character.characterId;
+      let loser = _.head(_.without(this.props.characters,_.find(this.props.characters, { characterId: winner }))).characterId;
+      HomeActions.vote(winner, loser);
   }
   
   render() {

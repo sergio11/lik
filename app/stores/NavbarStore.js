@@ -7,7 +7,8 @@ class NavbarStore {
     this.state = {
       totalCharacters: 0,
       onlineUsers: 0,
-      searchQuery: ''
+      searchQuery: '',
+      options: []
     }
   }
 

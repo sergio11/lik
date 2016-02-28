@@ -39,6 +39,13 @@ class HomeActions {
       api.vote({ winner: winner, loser: loser })
       .then((data) => {
           this.actions.getTwoCharacters();
+          //lanzamos notificación de error.
+          AppActions.throwNotification.defer({
+                id: 4,
+                title: 'Voto realizado',
+                message: 'Voto Realizado con éxito',
+                type: 'success'
+            });
       })
       .catch((err) => {
           this.actions.voteFail(err);

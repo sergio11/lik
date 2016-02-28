@@ -71,6 +71,61 @@ router.post('/', function(req, res, next) {
   }))
 });
 
+
+/**
+ * PUT /api/characters
+ * Update winning and losing count for both characters.
+ */
+
+router.put('/', function(req, res, next) {
+  let winner = req.body.winner;
+  let loser = req.body.loser;
+
+  if (!winner || !loser) {
+      throw httpError(400,'Voting requires two characters.');
+  }else if(winner === loser){
+      throw httpError(400,'Cannot vote for and against the same character.');
+  }else{
+      Promise.all([
+          CharactersDAO.getCharacterById(winner),
+          CharactersDAO.getCharacterById(loser),
+      ]).then(results => {
+          let winner = results[0], loser = results[1];
+          if (!winner || !loser) {
+              throw httpError(400,'One of the characters no longer exists.');
+          }
+          
+          if (winner.voted || loser.voted) {
+                Promise.resolve();
+          }
+          
+          return Promise.all([
+              function(){
+                  winner.wins++;
+                  winner.voted = true;
+                  winner.random = [Math.random(), 0];
+                  return winner.saveAsync();
+              },
+              function(){
+                  loser.losses++;
+                  loser.voted = true;
+                  loser.random = [Math.random(), 0];
+                  return loser.saveAsync();
+              }
+          ])
+          
+          
+      })
+      .then(results => {
+           res.status(200).end();
+       })
+      .catch(err => {
+          next(err);
+      });
+  }
+
+});
+
 /**
  * GET /api/characters/count
  * Returns the total number of characters.
@@ -112,6 +167,26 @@ router.get('/top', function(req, res, next) {
 
       res.send(characters);
     });
+});
+
+/**
+ * GET /api/characters/search
+ * Looks up a character by name. (case-insensitive)
+ */
+router.get('/search', function(req, res, next) {
+  var characterName = new RegExp(req.query.name, 'i');
+  CharactersDAO
+  .getCharacterByName(characterName)
+  .then(character => {
+      if (!character) {
+          throw httpError(404,'Character not found.');
+       }
+       res.send(character);
+  })
+  .catch(err => {
+      return next(err);
+  })
+   
 });
 
 export default router;

@@ -15,6 +15,14 @@ class CharactersDAO {
         return Character.countAsync({});
     }
     
+    getCharacterByName(name){
+        return Character.findOneAsync({ name: name });
+    }
+    
+    getCharacterById(id){
+        return Character.findOneAsync({ characterId: id });
+    }
+    
 };
 
 export default new CharactersDAO();
