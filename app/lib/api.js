@@ -5,8 +5,9 @@ class API {
   _sendRequest(type,endpoint,params){
 
     let options = {};
-    options.method = type || 'GET';
+    options.method = type ;
     options.uri = 'http://localhost:3000'+endpoint;
+    console.log(options.uri);
     if(type == 'GET'){
       options.qs = params;
     }else{
@@ -18,27 +19,27 @@ class API {
   }
 
   getCharacterCount(){
-    return this._sendRequest('/api/characters/count');
+    return this._sendRequest('GET','/api/characters/count');
   }
 
   getTopCharacters(){
-    return this._sendRequest('/api/characters/top');
+    return this._sendRequest('GET','/api/characters/top');
   }
 
   findCharacter(params){
-    return this._sendRequest('/api/characters/search',params);
+    return this._sendRequest('GET','/api/characters/search',params);
   }
 
   addCharacter(params){
-    return this._sendRequest('post','/api/characters',params);
+    return this._sendRequest('POST','/api/characters',params);
   }
   
   getTwoCharacters(){
-      return this._sendRequest('/api/characters'); 
+      return this._sendRequest('GET','/api/characters'); 
   }
   
   vote(params){
-      return this._sendRequest('put','/api/characters',params);
+      return this._sendRequest('PUT','/api/characters',params);
   }
   
   

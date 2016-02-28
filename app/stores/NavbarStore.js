@@ -22,11 +22,11 @@ class NavbarStore {
   }
 
   onUpdateSearchQuery(event) {
-    this.searchQuery = event.target.value;
+    this.state.searchQuery = event.target.value;
   }
 
   onGetCharacterCountSuccess(data) {
-    this.totalCharacters = data.count;
+    this.state.totalCharacters = data.count;
   }
 
   onGetCharacterCountFail(err) {}

@@ -63,7 +63,7 @@ app.use(function(req, res) {
 
 //Error handling middleware
 app.use(function(err, req, res, next) {
-  console.error(err.message);
+  console.error(err.stack);
   res.status(err.status || 500);
   res.send({ message: err.message });
 });

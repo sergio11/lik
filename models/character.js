@@ -51,5 +51,8 @@ Above, we create a Character model and immediately export it
 let Character = mongoose.model('Character', characterSchema);
 bluebird.promisifyAll(Character);
 bluebird.promisifyAll(Character.prototype);
+bluebird.promisifyAll(mongoose.Model);
+bluebird.promisifyAll(mongoose.Model.prototype);
+bluebird.promisifyAll(mongoose.Query.prototype);
 
 export default Character;

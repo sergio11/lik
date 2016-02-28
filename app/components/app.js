@@ -36,7 +36,7 @@ class App extends React.Component {
       }];
       
       return (
-        <BackgroundVideo videos={videos} autoPlay loop poster='img/fondo.jpg' muted>
+        <BackgroundVideo videos={videos} autoPlay loop poster='img/fondo.jpg' muted overlay>
             <Navbar />
             <Notifications notifications={this.props.notifications} onRequestHide={this.handleRequestHide.bind(this)}/>
             {this.props.children}

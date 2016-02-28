@@ -36,6 +36,9 @@ class Navbar extends React.Component {
       console.log(data);
       NavbarActions.updateOnlineUsers(data);
     });
+    
+    
+    NavbarActions.getCharacterCount();
 
   }
 

@@ -15,14 +15,18 @@ class HomeActions {
       api.getTwoCharacters()
       .then((data) => {
         this.actions.getTwoCharactersSuccess(data);
+        console.log("Personajes Obtenidos");
+        console.log(data);
       })
       .catch((err) => {
         this.actions.getTwoCharactersFail(err);
+        console.log("Error al obtener personajes");
+        console.log(err);
          //lanzamos notificación de error.
         AppActions.throwNotification.defer({
             id: 2,
             title: 'Error al obtener personajes',
-            message: err,
+            message: 'Error al obtener Personajes',
             type: 'error'
         });
       });
@@ -39,7 +43,7 @@ class HomeActions {
           AppActions.throwNotification.defer({
                 id: 3,
                 title: 'Error al realizar voto',
-                message: err,
+                message: 'Error al realizar el voto',
                 type: 'error'
             });
       });
