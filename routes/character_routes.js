@@ -139,6 +139,26 @@ router.get('/count', function(req, res, next) {
   
 });
 
+/**
+ * GET /api/characters/:id
+ * Returns detailed character information.
+ */
+router.get('/:id', function(req, res, next) {
+  var id = req.params.id;
+  CharactersDAO
+  .getCharacterById(id)
+  .then(character => {
+      if (!character) {
+          throw httpError(404,'Character not found.');
+      }
+      res.send(character);
+  })
+  .catch(err => {
+      next(err);
+  });
+
+});
+
 
 /**
  * GET /api/characters/top/:count

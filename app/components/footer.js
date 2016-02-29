@@ -26,7 +26,7 @@ class Footer extends React.Component {
   render() {
     return (
       <footer>
-        <Grid>
+        <Grid fluid>
             <Row className="show-grid">
               <Col sm={5}>
                 <h3 className='lead'><strong>Information</strong> and <strong>Copyright</strong></h3>
