@@ -28,15 +28,15 @@ class App extends React.Component {
   render() {
       
       const videos = [{
-          src: 'videos/video_1.mp4',
+          src: 'http://localhost:3000/videos/video_1.mp4',
           type: 'video/mp4'
       },{
-          src: 'videos/video_1.ogg',
+          src: 'http://localhost:3000/videos/video_1.ogg',
           type: 'video/ogg'
       }];
       
       return (
-        <BackgroundVideo videos={videos} autoPlay loop poster='img/fondo.jpg' muted overlay>
+        <BackgroundVideo videos={videos} autoPlay loop poster='http://localhost:3000/img/fondo.jpg' muted overlay>
             <Navbar />
             <Notifications notifications={this.props.notifications} onRequestHide={this.handleRequestHide.bind(this)}/>
             {this.props.children}

@@ -4,6 +4,7 @@ import App from './components/app';
 import Home from './components/Home';
 import AddCharacter from './components/AddCharacter';
 import Character from './components/Character';
+import CharacterList from './components/CharacterList';
 
 
 const AppRouter = (props, context) => {
@@ -20,5 +21,10 @@ export default (
     <IndexRoute  component={Home} />
     <Route path='/add' component={AddCharacter} />
     <Route path='/characters/:id' component={Character} />
+    <Route path=':category' component={CharacterList}>
+        <Route path=':race' component={CharacterList}>
+            <Route path=':bloodline' component={CharacterList} />
+        </Route>
+    </Route>
   </Route>
 );
