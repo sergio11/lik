@@ -41,14 +41,14 @@ class Home extends React.Component {
     return (
         <Grid>
             <Row>
-                <h3 className='text-center col-xs-12'>{this.i18n.t('home.title')}</h3>
+                <h3 className='text-center col-xs-12 invert'>{this.i18n.t('home.title')}</h3>
             </Row>
             <Row>
                 <Loader loaded={this.props.loaded} width={10} color='#fff'>
                 {
                     this.props.characters.map((character, index) => {
                         return (
-                           <div key={character.characterId} className={index === 0 ? 'col-xs-6 col-sm-6 col-md-5 col-md-offset-1' : 'col-xs-6 col-sm-6 col-md-5'}>
+                           <div key={character.characterId} className={index === 0 ? 'col-xs-3 col-sm-6 col-md-5 col-md-offset-1' : 'col-xs-3 col-sm-6 col-md-5'}>
                                 <Thumbnail onClick={this.handleClick.bind(this, character)} className="fadeInUp animated" src={'http://image.eveonline.com/Character/' + character.characterId + '_512.jpg'} alt={character.name}>
                                     <h3 className='caption text-center'>{character.name}</h3>
                                     <ul className='list-inline'>

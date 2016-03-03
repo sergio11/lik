@@ -1,5 +1,6 @@
 import React from 'react';
 import BackgroundVideo from 'react-background-video';
+import { Scrollbars } from 'react-custom-scrollbars';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Notifications from 'react-notifications';
@@ -36,12 +37,14 @@ class App extends React.Component {
       }];
       
       return (
-        <BackgroundVideo videos={videos} autoPlay loop poster='http://localhost:3000/img/fondo.jpg' muted overlay>
-            <Navbar />
-            <Notifications notifications={this.props.notifications} onRequestHide={this.handleRequestHide.bind(this)}/>
-            {this.props.children}
-            <Footer />
-        </BackgroundVideo>
+          <BackgroundVideo videos={videos} autoPlay loop poster='http://localhost:3000/img/fondo.jpg' muted overlay>
+              <Navbar />
+              <Notifications notifications={this.props.notifications} onRequestHide={this.handleRequestHide.bind(this)}/>
+              <main className='main'>
+                 {this.props.children}
+               </main>
+               <Footer />
+          </BackgroundVideo>
     );
   }
 }

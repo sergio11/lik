@@ -35,6 +35,8 @@ const dependencies = [
   'react-router',
   'react-notifications',
   'react-loader',
+  'react-custom-scrollbars',
+  'react-imageloader',
   'lodash',
   'react-bootstrap',
   'react-router-bootstrap',
