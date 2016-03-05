@@ -3,12 +3,16 @@ import bluebird from 'bluebird';
 import xml2js from 'xml2js';
 import httpError from 'http-errors';
 import Character from './models/character';
+import CharactersDAO from './daos/CharactersDAO';
 
 let xml2jsfy = bluebird.promisifyAll(xml2js);
 
-function userExistenceCheck(id){
-    return Character.findOneAsync({ characterId: id }).then(character => {
-      return character ? true : false;
+export const userExistenceCheck = function(id){
+    return CharactersDAO.getCharacterById(id).then(character => {
+        if(character)
+            throw httpError(409,  character.name + ' is already in the database.');
+        else
+            return id;
     });
 }
 
@@ -44,6 +48,7 @@ export const getCharacterInfo = function(id){
     })
     .then(res =>  {
       return {
+        characterId: id,
         name: res.eveapi.result[0].characterName[0],
         race: res.eveapi.result[0].race[0],
         bloodline: res.eveapi.result[0].bloodline[0]

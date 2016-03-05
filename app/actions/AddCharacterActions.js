@@ -27,12 +27,11 @@ class AddCharacterActions {
           type: 'success'
         });
     }).catch((err) => {
-      console.log(err);
       this.actions.addCharacterFail();
       //lanzamos notificación de error.
       AppActions.throwNotification.defer({
-        title: 'Title',
-        message: 'Error al crear personje',
+        title: 'Error al crear personaje',
+        message: err.error.message,
         type: 'error'
       });
     });

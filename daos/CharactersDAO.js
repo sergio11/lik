@@ -31,6 +31,11 @@ class CharactersDAO {
               .execAsync();
     }
     
+    save(data){
+        return new Character(data).saveAsync();
+        
+    }
+    
 };
 
 export default new CharactersDAO();

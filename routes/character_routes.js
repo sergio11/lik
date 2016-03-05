@@ -1,7 +1,7 @@
 import express from 'express';
 import _ from 'lodash';
 import httpError from 'http-errors';
-import { getCharacterId, getCharacterInfo } from '../utils';
+import { getCharacterId, getCharacterInfo, userExistenceCheck } from '../utils';
 import CharactersDAO from '../daos/CharactersDAO';
 
 
@@ -70,22 +70,23 @@ router.post('/', function(req, res, next) {
   var characterName = req.body.name;
   //making HTTP requests to the EVE Online API to get character id.
   getCharacterId(characterName)
+  .then(userExistenceCheck)
   .then(getCharacterInfo)
   .then((info) => {
     //Save the character
-    var character = new Character({
-      characterId: info.characterId,
-      name: characterName,
-      race: info.race,
-      bloodline: info.bloodline,
-      gender: gender,
-      random: [Math.random(), 0]
+    CharactersDAO.save({
+        characterId: info.characterId,
+        name: characterName,
+        race: info.race,
+        bloodline: info.bloodline,
+        gender: gender,
+        random: [Math.random(), 0]
+    }).then(() => {
+        res.send({ message: characterName + ' has been added successfully!' });
+    }).catch(err => {
+        next(err);
     });
-
-    character.save(function(err) {
-      if (err) return next(err);
-      res.send({ message: characterName + ' has been added successfully!' });
-    });
+    
   }).catch((error => {
     return next(error);
   }))
