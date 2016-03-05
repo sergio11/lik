@@ -7,14 +7,18 @@ class CharacterListActions {
     constructor() {
         this.generateActions(
         'getCharactersSuccess',
-        'getCharactersFail'
+        'getCharactersFail',
+        'getCharacterCountSuccess',
+        'getCharacterCountFail'
         );
     }
 
-    getCharacters(payload) {
+    getCharacters(payload,limit) {
         
         console.log("Payload");
         console.log(payload);
+        console.log("Limit");
+        console.log(limit);
  
         let params = {
             race: payload.race,
@@ -28,12 +32,20 @@ class CharacterListActions {
         }
         
         api
-        .getTopCharacters(100,params)
+        .getTopCharacters(limit,params)
         .then(data => {
             this.actions.getCharactersSuccess(data);
         })
         .catch(err => {
             this.actions.getCharactersFail(err);
+        });
+    }
+    
+    getCharacterCount() {
+        api.getCharacterCount().then((data) => {
+        this.actions.getCharacterCountSuccess(data);
+        }).catch((err) => {
+        this.actions.getCharacterCountFail(err)
         });
     }
 }

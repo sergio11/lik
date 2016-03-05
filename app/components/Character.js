@@ -41,8 +41,6 @@ class Character extends React.Component {
     }
 
     render() {
-        
-        
 
         return (
             <Grid>

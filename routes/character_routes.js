@@ -161,14 +161,15 @@ router.get('/:id', function(req, res, next) {
 
 
 /**
- * GET /api/characters/top/:count
- * Return :count highest ranked characters. Filter by gender, race and bloodline.
+ * GET /api/characters/top/:start/:count
+ * Return :count highest ranked characters from :start position. Filter by gender, race and bloodline.
  */
-router.get('/top/:count?', function(req, res, next) {
+router.get('/top/:start?/:count?', function(req, res, next) {
+   let start =  req.params.start || 0;
    let count =  req.params.count || 100;
    
    CharactersDAO
-    .getTopCharacters(count,'-wins')
+    .getTopCharacters(start,count,'-wins')
     .then(characters => {
         characters.sort((a, b) => {
             if (a.wins / (a.wins + a.losses) < b.wins / (b.wins + b.losses)) { return 1; }

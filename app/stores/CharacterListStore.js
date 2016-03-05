@@ -5,7 +5,10 @@ class CharacterListStore {
   constructor() {
     this.bindActions(CharacterListActions);
     this.state = {
-        characters: []
+        characters: [],
+        total: 0,
+        chaPerPage: 10,
+        initialSelected:1
     }
   }
 
@@ -16,6 +19,12 @@ class CharacterListStore {
   onGetCharactersFail() {
     
   }
+  
+  onGetCharacterCountSuccess(data) {
+    this.state.total = data.count;
+  }
+
+  onGetCharacterCountFail(err) {}
 }
 
 export default alt.createStore(CharacterListStore);

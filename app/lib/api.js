@@ -22,8 +22,8 @@ class API {
         return this._sendRequest('GET','/api/characters/count');
     }
 
-    getTopCharacters(count,params){
-        return this._sendRequest('GET','/api/characters/top/'+count,params);
+    getTopCharacters(limit,params){
+        return this._sendRequest('GET',`/api/characters/top/${limit.start}/${limit.count}`,params);
     }
 
     findCharacter(params){

@@ -23,9 +23,10 @@ class CharactersDAO {
         return Character.findOneAsync({ characterId: id });
     }
     
-    getTopCharacters(count,orderBy){
+    getTopCharacters(start,count,orderBy){
        return Character.find()
               .sort(orderBy)
+              .skip(start)
               .limit(count)
               .execAsync();
     }

@@ -22,7 +22,6 @@ class Navbar extends React.Component {
   constructor(props,context) {
     super(props,context);
     this.i18n = context.i18n;
-    console.log("Estas son las props del Navbar")
   }
  
 

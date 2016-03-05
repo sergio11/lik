@@ -37,6 +37,7 @@ const dependencies = [
   'react-loader',
   'react-custom-scrollbars',
   'react-imageloader',
+  'react-paginate',
   'lodash',
   'react-bootstrap',
   'react-router-bootstrap',

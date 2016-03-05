@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
-import {Grid, ListGroup} from 'react-bootstrap';
+import {Grid,Row, ListGroup} from 'react-bootstrap';
+import ReactPaginate from 'react-paginate';
 import _ from 'lodash';
 import CharacterListStore from '../stores/CharacterListStore';
 import CharacterListActions from '../actions/CharacterListActions';
@@ -18,18 +19,22 @@ class CharacterList extends React.Component {
     
     constructor(props) {
         super(props);
-        console.log("Props");
-        console.log(props);
     }
 
     componentDidMount() {
-        CharacterListActions.getCharacters(this.props.params);
+        CharacterListActions.getCharacterCount();
     }
     
     componentDidUpdate(prevProps) {
         if (!_.isEqual(prevProps.params, this.props.params)) {
             CharacterListActions.getCharacters(this.props.params);
         }
+    }
+    
+    _nextPage(e){
+        //Object { selected: 1 }
+        let limit = {start:this.props.chaPerPage * e.selected,count:this.props.chaPerPage};
+        CharacterListActions.getCharacters(this.props.params,limit);
     }
 
 
@@ -67,6 +72,18 @@ class CharacterList extends React.Component {
                             
                         }
                     </ListGroup>
+                    <Row>
+                        <ReactPaginate 
+                            breakLabel={"..."}
+                            pageNum={this.props.total / this.props.chaPerPage}
+                            marginPagesDisplayed={2}
+                            pageRangeDisplayed={5}
+                            activeClassName={"active"}
+                            containerClassName={""}
+                            subContainerClassName={"pagination pagination-lg"}
+                            initialSelected={this.props.initialSelected}
+                            clickCallback={this._nextPage.bind(this)} />
+                    </Row>    
                 </Grid>
         );
        
