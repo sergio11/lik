@@ -185,7 +185,7 @@ gulp.task('images', () => {
 */
 
 gulp.task('fonts', () => {
-  return gulp.src('bower_components/bootstrap-sass/assets/fonts/**')
+  return gulp.src('bower_components/bootstrap-sass-official/assets/fonts/**')
     .pipe(gulp.dest('public/fonts/'))
     .pipe(plugins.size({
       title:"Fonts"

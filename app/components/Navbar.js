@@ -7,6 +7,7 @@ import NavbarStore from '../stores/NavbarStore';
 import NavbarActions from '../actions/NavbarActions';
 import connectToStores from '../hoc/connectToStores';
 import socket from 'socket.io-client';
+import classNames from 'classNames';
 
 
 class Navbar extends React.Component {
@@ -44,6 +45,13 @@ class Navbar extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log("Consultando Datos");
+    console.log(event);
+    
+    let searchQuery = this.props.search.value.trim();
+    console.log(searchQuery);
+    searchQuery && NavbarActions.findCharacter(searchQuery);
+
   }
   
 
@@ -51,16 +59,13 @@ class Navbar extends React.Component {
     return(
       <NavBarB inverse fixedTop>
         <NavBarB.Header staticTop>
-          <div className='triangles fadeIn animated'>
-            <span className='tri invert animated'></span>
-            <span className='tri invert animated'></span>
-            <span className='tri animated'></span>
-            <span className='tri invert animated'></span>
-            <span className='tri invert animated'></span>
-            <span className='tri animated'></span>
-            <span className='tri invert animated'></span>
-            <span className='tri animated'></span>
-            <span className='tri invert animated'></span>
+          <div className={classNames({'fadeIn': this.props.search.state == 'dirty','fadeOut': this.props.search.state !== 'dirty'},'animated')}>
+            <div className='loader'>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
           </div>
           <NavBarB.Brand>
             <Link to='/'>
@@ -70,8 +75,12 @@ class Navbar extends React.Component {
           <NavBarB.Toggle />
         </NavBarB.Header>
         <NavBarB.Collapse>
-          <NavBarB.Form pullLeft onSubmit={this.handleSubmit.bind(this)}>
-            <Input type="text"  placeholder={this.props.totalCharacters + ' characters'} value={this.props.searchQuery} onChange={NavbarActions.updateSearchQuery} buttonAfter={<Button type='submit'><Glyphicon glyph="search" /></Button>} />
+          <NavBarB.Form pullLeft className={classNames(
+              {'has-success':this.props.search.state == 'success','has-error': this.props.search.state == 'fail'} ,'animated', {'shake': this.props.search.state == 'fail' }
+             )}>
+             <form className="form-horizontal" onSubmit={this.handleSubmit.bind(this)}>
+                <Input type="text" placeholder={this.props.totalCharacters + ' characters'} value={this.props.search.value} onChange={NavbarActions.updateSearchQuery} buttonAfter={<Button type='submit' className='btn btn-primary'><Glyphicon glyph="search" /></Button>} />
+             </form>
           </NavBarB.Form>
           <Nav>
             <LinkContainer to={{ pathname: '/'}}>

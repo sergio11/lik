@@ -15,14 +15,12 @@ class NavbarActions {
     );
   }
 
-  findCharacter(payload) {
-    api.findCharacter({
-      name: payload.searchQuery
-    }).then((data) => {
-      _.assign(payload, data);
-      this.actions.findCharacterSuccess(payload);
+  findCharacter(searchQuery) {
+    api.findCharacter({name:searchQuery})
+    .then((data) => {
+      this.actions.findCharacterSuccess(data);
     }).catch((err) => {
-      this.actions.findCharacterFail(payload);
+      this.actions.findCharacterFail(err);
     });
   }
 

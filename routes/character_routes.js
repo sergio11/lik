@@ -40,6 +40,26 @@ router.get('/', function(req, res, next) {
 });
 
 /**
+ * GET /api/characters/search
+ * Looks up a character by name. (case-insensitive)
+ */
+router.get('/search', function(req, res, next) {
+  var characterName = new RegExp(req.query.name, 'i');
+  CharactersDAO
+  .getCharacterByName(characterName)
+  .then(character => {
+      if (!character) {
+          throw httpError(404,'Character not found.');
+       }
+       res.send(character);
+  })
+  .catch(err => {
+      return next(err);
+  })
+   
+});
+
+/**
  * POST /api/characters
  * Adds new character to the database.
  */
@@ -183,25 +203,7 @@ router.get('/top/:start?/:count?', function(req, res, next) {
     })
 });
 
-/**
- * GET /api/characters/search
- * Looks up a character by name. (case-insensitive)
- */
-router.get('/search', function(req, res, next) {
-  var characterName = new RegExp(req.query.name, 'i');
-  CharactersDAO
-  .getCharacterByName(characterName)
-  .then(character => {
-      if (!character) {
-          throw httpError(404,'Character not found.');
-       }
-       res.send(character);
-  })
-  .catch(err => {
-      return next(err);
-  })
-   
-});
+
 
 export default router;
 

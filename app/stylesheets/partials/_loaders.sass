@@ -1,53 +1,59 @@
 
-.triangles
-  position: absolute
-  top: 50%
-  left: 20%
-  height: $trih * 3
-  width: $triw * 3
-  transform: translate(-50%, -50%)
-  opacity: 0
-  .tri
-    position: absolute
-    animation: pulse 750ms ease-in infinite
-    border-top: $trih solid $tricolor
-    border-left: $triw/2 solid transparent
-    border-right: $triw/2 solid transparent
-    border-bottom: 0
-    &.invert
-      border-top: 0
-      border-bottom: $trih solid $tricolor
-      border-left: $triw/2 solid transparent
-      border-right: $triw/2 solid transparent
-    &:nth-child(1)
-      left: $triw
-    &:nth-child(2)
-      left: $triw/2
-      top: $trih
-      animation-delay: -125ms
-    &:nth-child(3)
-      left: $triw
-      top: $trih
-    &:nth-child(4)
-      left: $triw*1.5
-      top: $trih
-      animation-delay: -625ms
-    &:nth-child(5)
-      top: $trih*2
-      animation-delay: -250ms
-    &:nth-child(6)
-      top: $trih*2
-      left: $triw/2
-      animation-delay: -250ms
-    &:nth-child(7)
-      top: $trih*2
-      left: $triw
-      animation-delay: -375ms
-    &:nth-child(8)
-      top: $trih*2
-      left: $triw*1.5
-      animation-delay: -500ms
-    &:nth-child(9)
-      top: $trih*2
-      left: $triw*2
-      animation-delay: -500ms
+@keyframes loader
+	0%, 10%, 100%
+		width: 25px
+		height: 25px
+	65%
+		width: 30px
+		height: 30px
+@keyframes loaderBlock
+	0%, 30%
+		transform: rotate(0)
+	55%
+		background-color: transparent
+        transform: scale(.5)
+	100%
+		transform: rotate(180deg)
+        
+ @keyframes loaderBlockInverse
+	0%, 20%
+		transform: rotate(0)
+	55%
+		background-color: transparent
+        transform: scale(.5)
+	100%
+		transform: rotate(180deg)
+        
+.loader
+	position: absolute
+	top: 50%
+	left: 5%
+	width: 25px
+	height: 25px
+	transform: translate(-50%, -50%) rotate(45deg) translate3d(0,0,0)
+	animation: loader 1.2s infinite ease-in-out
+
+	span
+		position: absolute
+		display: block
+		width: 10px
+		height: 10px
+        border-radius: 5px
+		background-color: $brand-primary
+        border: 1px $brand-primary solid
+        box-sizing: border-box
+		animation:loaderBlock 1.2s infinite ease-in-out both
+		&:nth-child(1)
+			top: 0
+			left: 0
+		&:nth-child(2)
+			top: 0
+			right: 0
+			animation: loaderBlockInverse 1.2s infinite ease-in-out both
+		&:nth-child(3)
+			bottom: 0
+			left: 0
+		    animation: loaderBlockInverse 1.2s infinite ease-in-out both
+		&:nth-child(4)
+			bottom: 0
+			right: 0

@@ -7,23 +7,29 @@ class NavbarStore {
     this.state = {
       totalCharacters: 0,
       onlineUsers: 0,
-      searchQuery: '',
-      options: []
+      search:{
+          state: 'pristine',
+          value: ''
+      },
+      options: [],
     }
   }
 
-  onFindCharacterSuccess(payload) {
-    payload.history.pushState(null, '/characters/' + payload.characterId);
+  onFindCharacterSuccess(data) {
+       this.state.search.state = 'success';
   }
 
-  onFindCharacterFail(payload) {}
+  onFindCharacterFail(err) {
+      this.state.search.state = 'fail';
+  }
 
   onUpdateOnlineUsers(data) {
     this.state.onlineUsers = data.onlineUsers;
   }
 
   onUpdateSearchQuery(event) {
-    this.state.searchQuery = event.target.value;
+    this.state.search.value = event.target.value;
+    this.state.search.state = 'dirty';
   }
 
   onGetCharacterCountSuccess(data) {
