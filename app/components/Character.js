@@ -2,9 +2,9 @@ import React from 'react';
 import {Grid, Row, Col, Image} from 'react-bootstrap';
 import ImageLoader from 'react-imageloader';
 import CharacterStore from '../stores/CharacterStore';
-import CharacterActions from '../actions/CharacterActions'
-import connectToStores from '../hoc/connectToStores';
+import CharacterActions from '../actions/CharacterActions';
 import Loader  from 'react-loader';
+import connectToStores from 'alt-utils/lib/connectToStores';
 
 class Character extends React.Component {
     
@@ -12,7 +12,7 @@ class Character extends React.Component {
       return [CharacterStore];
     }
 
-    static getState() {
+    static getPropsFromStores() {
       return CharacterStore.getState();
     }
     

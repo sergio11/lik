@@ -6,7 +6,7 @@ import Footer from './Footer';
 import Notifications from 'react-notifications';
 import AppStore from '../stores/AppStore';
 import AppActions from '../actions/AppActions';
-import connectToStores from '../hoc/connectToStores';
+import connectToStores from 'alt-utils/lib/connectToStores';
 
 class App extends React.Component {
 
@@ -14,7 +14,7 @@ class App extends React.Component {
       return [AppStore];
   }
 
-  static getState() {
+  static getPropsFromStores() {
       return AppStore.getState();
   }
 

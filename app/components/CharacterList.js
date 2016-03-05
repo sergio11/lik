@@ -5,7 +5,7 @@ import ReactPaginate from 'react-paginate';
 import _ from 'lodash';
 import CharacterListStore from '../stores/CharacterListStore';
 import CharacterListActions from '../actions/CharacterListActions';
-import connectToStores from '../hoc/connectToStores';
+import connectToStores from 'alt-utils/lib/connectToStores';
 
 class CharacterList extends React.Component {
     
@@ -13,7 +13,7 @@ class CharacterList extends React.Component {
       return [CharacterListStore];
     }
 
-    static getState() {
+    static getPropsFromStores() {
       return CharacterListStore.getState();
     }
     

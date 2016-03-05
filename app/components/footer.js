@@ -3,7 +3,7 @@ import {Link} from 'react-router';
 import { Image, Grid, Row, Col } from 'react-bootstrap';
 import FooterStore from '../stores/FooterStore'
 import FooterActions from '../actions/FooterActions';
-import connectToStores from '../hoc/connectToStores';
+import connectToStores from 'alt-utils/lib/connectToStores';
 
 class Footer extends React.Component {
 
@@ -11,7 +11,7 @@ class Footer extends React.Component {
       return [FooterStore];
   }
 
-  static getState() {
+  static getPropsFromStores() {
       return FooterStore.getState();
   }
 

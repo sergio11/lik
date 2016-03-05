@@ -5,7 +5,7 @@ import Loader  from 'react-loader';
 import _ from 'lodash';
 import HomeActions from '../actions/HomeActions';
 import HomeStore from '../stores/HomeStore';
-import connectToStores from '../hoc/connectToStores';
+import connectToStores from 'alt-utils/lib/connectToStores';
 
 class Home extends React.Component {
     
@@ -13,7 +13,7 @@ class Home extends React.Component {
       return [HomeStore];
   }
 
-  static getState() {
+  static getPropsFromStores() {
       return HomeStore.getState();
   }
 

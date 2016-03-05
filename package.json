@@ -23,6 +23,7 @@
   "dependencies": {
     "@schibstedspain/rosetta": "^3.8.0",
     "alt": "^0.17.8",
+    "alt-utils": "^1.0.0",
     "bluebird": "^3.3.1",
     "body-parser": "^1.14.1",
     "classnames": "^2.2.3",

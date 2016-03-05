@@ -5,7 +5,7 @@ import {Nav, NavItem, Badge, Input, Button, Glyphicon, NavDropdown, MenuItem} fr
 import {LinkContainer} from  'react-router-bootstrap';
 import NavbarStore from '../stores/NavbarStore';
 import NavbarActions from '../actions/NavbarActions';
-import connectToStores from '../hoc/connectToStores';
+import connectToStores from 'alt-utils/lib/connectToStores';
 import socket from 'socket.io-client';
 import classNames from 'classNames';
 
@@ -16,7 +16,7 @@ class Navbar extends React.Component {
       return [NavbarStore];
   }
 
-  static getState() {
+  static getPropsFromStores() {
       return NavbarStore.getState();
   }
 
@@ -45,8 +45,6 @@ class Navbar extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("Consultando Datos");
-    console.log(event);
     
     let searchQuery = this.props.search.value.trim();
     console.log(searchQuery);
