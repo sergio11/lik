@@ -48,6 +48,10 @@ class CharacterListActions {
         this.actions.getCharacterCountFail(err)
         });
     }
+    
+    updateCurrentPage(page){
+        return page;
+    }
 }
 
 export default alt.createActions(CharacterListActions);

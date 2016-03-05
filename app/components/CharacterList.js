@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router';
 import {Grid,Row, ListGroup} from 'react-bootstrap';
 import ReactPaginate from 'react-paginate';
+import ImageLoader from 'react-imageloader';
 import _ from 'lodash';
 import CharacterListStore from '../stores/CharacterListStore';
 import CharacterListActions from '../actions/CharacterListActions';
@@ -33,10 +34,14 @@ class CharacterList extends React.Component {
     
     _nextPage(e){
         //Object { selected: 1 }
-        let limit = {start:this.props.chaPerPage * e.selected,count:this.props.chaPerPage};
+        let page = e.selected, limit = {start:this.props.chaPerPage * e.selected,count:this.props.chaPerPage};
+        CharacterListActions.updateCurrentPage(page);
         CharacterListActions.getCharacters(this.props.params,limit);
     }
 
+     _preloader() {
+        return <img src='/img/loader.gif' />;
+    }
 
     render() {
         return (
@@ -49,10 +54,17 @@ class CharacterList extends React.Component {
                                 return (
                                     <div key={character.characterId} className='list-group-item animated fadeIn'>
                                         <div className='media'>
-                                            <span className='position pull-left'>{index + 1}</span>
+                                            <span className='position pull-left'>{this.props.currentPage * this.props.chaPerPage + index + 1}</span>
                                             <div className='pull-left thumb-lg'>
                                                 <Link to={'/characters/' + character.characterId}>
-                                                    <img className='media-object' src={'http://image.eveonline.com/Character/' + character.characterId + '_128.jpg'} />
+                                                    <ImageLoader
+                                                        className='media-object'
+                                                        src={'http://image.eveonline.com/Character/' + character.characterId + '_128.jpg'}
+                                                        imgProps={{'thumbnail':true}}
+                                                        wrapper={React.DOM.div}
+                                                        preloader={this._preloader}>
+                                                        Image load failed!
+                                                    </ImageLoader>
                                                 </Link>
                                             </div>
                                             <div className='media-body'>
@@ -81,7 +93,7 @@ class CharacterList extends React.Component {
                             activeClassName={"active"}
                             containerClassName={""}
                             subContainerClassName={"pagination pagination-lg"}
-                            initialSelected={this.props.initialSelected}
+                            initialSelected={this.props.currentPage}
                             clickCallback={this._nextPage.bind(this)} />
                     </Row>    
                 </Grid>

@@ -8,7 +8,7 @@ class CharacterListStore {
         characters: [],
         total: 0,
         chaPerPage: 10,
-        initialSelected:1
+        currentPage: 0
     }
   }
 
@@ -16,15 +16,17 @@ class CharacterListStore {
       this.state.characters = data;
   }
 
-  onGetCharactersFail() {
-    
-  }
+  onGetCharactersFail() {}
   
   onGetCharacterCountSuccess(data) {
     this.state.total = data.count;
   }
 
   onGetCharacterCountFail(err) {}
+  
+  onUpdateCurrentPage(page){
+      this.state.currentPage = page;
+  } 
 }
 
 export default alt.createStore(CharacterListStore);
