@@ -22,12 +22,9 @@ class CharacterList extends React.Component {
         super(props);
     }
 
-    componentDidMount() {
-        CharacterListActions.getCharacterCount();
-    }
-    
     componentDidUpdate(prevProps) {
         if (!_.isEqual(prevProps.params, this.props.params)) {
+            CharacterListActions.updateCurrentPage(0);
             CharacterListActions.getCharacters(this.props.params);
         }
     }
@@ -44,10 +41,11 @@ class CharacterList extends React.Component {
     }
 
     render() {
+        
         return (
-            
                 <Grid>
                     <ListGroup componentClass="ul">
+                    
                         {
                             this.props.characters.map((character, index) => {
                                 
@@ -92,8 +90,9 @@ class CharacterList extends React.Component {
                             pageRangeDisplayed={5}
                             activeClassName={"active"}
                             containerClassName={""}
-                            subContainerClassName={"pagination pagination-lg"}
+                            subContainerClassName={"pagination"}
                             initialSelected={this.props.currentPage}
+                            forceSelected={this.props.currentPage}
                             clickCallback={this._nextPage.bind(this)} />
                     </Row>    
                 </Grid>

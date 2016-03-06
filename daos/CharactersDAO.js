@@ -11,8 +11,8 @@ class CharactersDAO {
                .execAsync();
     }
     
-    getCharacterCount(){
-        return Character.countAsync({});
+    getCharacterCount(conditions){
+        return Character.find(conditions || {}).countAsync({});
     }
     
     getCharacterByName(name){
@@ -23,11 +23,12 @@ class CharactersDAO {
         return Character.findOneAsync({ characterId: id });
     }
     
-    getTopCharacters(start,count,orderBy){
-       return Character.find()
+    getTopCharacters(conditions,limit,orderBy){
+       return Character
+              .find(conditions)
               .sort(orderBy)
-              .skip(start)
-              .limit(count)
+              .skip(limit.start)
+              .limit(limit.count)
               .execAsync();
     }
     

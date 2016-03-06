@@ -1,5 +1,6 @@
 import alt from '../alt';
 import CharacterListActions from '../actions/CharacterListActions';
+import _ from 'lodash';
 
 class CharacterListStore {
   constructor() {
@@ -13,16 +14,11 @@ class CharacterListStore {
   }
 
   onGetCharactersSuccess(data) {
-      this.state.characters = data;
+      _.assign(this.state,data);
   }
 
   onGetCharactersFail() {}
-  
-  onGetCharacterCountSuccess(data) {
-    this.state.total = data.count;
-  }
 
-  onGetCharacterCountFail(err) {}
   
   onUpdateCurrentPage(page){
       this.state.currentPage = page;

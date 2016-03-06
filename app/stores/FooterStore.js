@@ -11,7 +11,7 @@ class FooterStore {
   }
 
   onGetTopCharactersSuccess(data) {
-    this.state.characters = data;
+    this.state.characters = data.characters;
   }
 
   onGetTopCharactersFail(err) {

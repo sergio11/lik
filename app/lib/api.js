@@ -18,8 +18,8 @@ class API {
         return request(options)
     }
 
-    getCharacterCount(){
-        return this._sendRequest('GET','/api/characters/count');
+    getCharacterCount(params){
+        return this._sendRequest('GET','/api/characters/count',params);
     }
 
     getTopCharacters(limit,params){

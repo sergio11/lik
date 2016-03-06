@@ -152,6 +152,7 @@ router.put('/', function(req, res, next) {
  * Returns the total number of characters.
  */
 router.get('/count', function(req, res, next) {
+    
     CharactersDAO.getCharacterCount().then(count => {
         res.send({ count: count });
     }).catch(err => {
@@ -186,18 +187,28 @@ router.get('/:id', function(req, res, next) {
  * Return :count highest ranked characters from :start position. Filter by gender, race and bloodline.
  */
 router.get('/top/:start?/:count?', function(req, res, next) {
-   let start =  req.params.start || 0;
-   let count =  req.params.count || 100;
+    
+    let conditions = {}, limit = {start: req.params.start || 0, count: req.params.count || 10};
+    
+   _.each(req.query, function(value, key) {
+        conditions[key] = new RegExp('^' + value + '$', 'i');
+   });
    
-   CharactersDAO
-    .getTopCharacters(start,count,'-wins')
-    .then(characters => {
-        characters.sort((a, b) => {
+   Promise.all([
+       CharactersDAO.getTopCharacters(conditions,limit,'-wins'),
+       CharactersDAO.getCharacterCount(conditions)
+   ])
+   .then(results => {
+       
+       let result = {};
+       result.total = results[1];
+       result.characters = results[0].sort((a, b) => {
             if (a.wins / (a.wins + a.losses) < b.wins / (b.wins + b.losses)) { return 1; }
             if (a.wins / (a.wins + a.losses) > b.wins / (b.wins + b.losses)) { return -1; }
             return 0;
         });
-        res.send(characters);
+        
+        res.send(result);
     })
     .catch(err => {
         next(err);
