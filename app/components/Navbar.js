@@ -153,7 +153,7 @@ class Navbar extends React.Component {
                  <MenuItem eventKey={6} href="#">Hall of Shame</MenuItem>
               </LinkContainer>
             </NavDropdown>
-            <NavDropdown eventKey={7} title="Female" id="basic-nav-dropdown">
+            <NavDropdown eventKey={7} title="Female" id="female-dropdown">
                 <LinkContainer to={{ pathname: '/female'}}>
                     <MenuItem eventKey={7.1} href="#">All</MenuItem>
                 </LinkContainer>
@@ -207,6 +207,63 @@ class Navbar extends React.Component {
                 </LinkContainer>
                 <LinkContainer to={{ pathname: '/female/amarr/khanid'}}>
                     <MenuItem eventKey={9.3} href="#">Khanid</MenuItem>
+                </LinkContainer>
+            </NavDropdown>
+            <NavDropdown eventKey={10} title="Male" id="male-dropdown">
+                <LinkContainer to={{ pathname: '/male'}}>
+                    <MenuItem eventKey={10.1} href="#">All</MenuItem>
+                </LinkContainer>
+                <MenuItem divider/>
+                <LinkContainer to={{ pathname: '/male/caldari'}}>
+                    <MenuItem eventKey={10.2} href="#">Caldari</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/caldari/achura'}}>
+                    <MenuItem eventKey={10.3} href="#">Achura</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/caldari/civire'}}>
+                    <MenuItem eventKey={10.4} href="#">Civire</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/caldari/deteis'}}>
+                    <MenuItem eventKey={10.5} href="#">Deteis</MenuItem>
+                </LinkContainer>
+                <MenuItem divider/>
+                <LinkContainer to={{ pathname: '/male/gallente'}}>
+                    <MenuItem eventKey={10.6} href="#">Gallente</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/gallente/gallente'}}>
+                    <MenuItem eventKey={10.7} href="#">Gallente</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/gallente/intaki'}}>
+                    <MenuItem eventKey={10.8} href="#">Intaki</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/gallente/jin-mei'}}>
+                    <MenuItem eventKey={10.9} href="#">Jin-Mei</MenuItem>
+                </LinkContainer>
+                <MenuItem divider/>
+                <LinkContainer to={{ pathname: '/male/minmatar'}}>
+                    <MenuItem eventKey={11} href="#">Minmatar</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/minmatar/brutor'}}>
+                    <MenuItem eventKey={11.1} href="#">Brutor</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/minmatar/sebiestor'}}>
+                    <MenuItem eventKey={11.2} href="#">Sebiestor</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/minmatar/vherokior'}}>
+                    <MenuItem eventKey={11.3} href="#">Vherokior</MenuItem>
+                </LinkContainer>
+                <MenuItem divider/>
+                <LinkContainer to={{ pathname: '/male/amarr'}}>
+                    <MenuItem eventKey={11.4} href="#">Amarr</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/amarr/amarr'}}>
+                    <MenuItem eventKey={11.5} href="#">Amarr</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/amarr/ni-kunni'}}>
+                    <MenuItem eventKey={11.6} href="#">Ni-Kunni</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/male/amarr/khanid'}}>
+                    <MenuItem eventKey={11.7} href="#">Khanid</MenuItem>
                 </LinkContainer>
             </NavDropdown>
             <LinkContainer to={{ pathname: '/add'}}>
