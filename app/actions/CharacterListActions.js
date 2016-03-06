@@ -13,7 +13,7 @@ class CharacterListActions {
 
     getCharacters(payload,limit) {
       
- 
+        limit = limit || {start:0, count: 10}
         let params = {
             race: payload.race,
             bloodline: payload.bloodline
@@ -25,9 +25,14 @@ class CharacterListActions {
             params.gender = 'male';
         }
         
-        api
-        .getTopCharacters(limit || {start:0, count: 10},params)
-        .then(data => {
+        let promise = null;
+        if (payload.category === 'shame') {
+            promise = api.getShameCharacters(limit);
+        }else{
+            promise = api.getTopCharacters(limit,params);
+        }
+        
+        promise.then(data => {
             this.actions.getCharactersSuccess(data);
         })
         .catch(err => {

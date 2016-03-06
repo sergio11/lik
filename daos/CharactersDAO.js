@@ -23,10 +23,19 @@ class CharactersDAO {
         return Character.findOneAsync({ characterId: id });
     }
     
-    getTopCharacters(conditions,limit,orderBy){
+    getShameCharacters(limit){
+        return Character
+               .find()
+               .sort('-losses')
+               .skip(limit.start)
+               .limit(limit.count)
+               .execAsync();
+    }
+    
+    getTopCharacters(conditions,limit){
        return Character
               .find(conditions)
-              .sort(orderBy)
+              .sort('-wins')
               .skip(limit.start)
               .limit(limit.count)
               .execAsync();

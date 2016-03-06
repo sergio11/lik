@@ -162,11 +162,29 @@ router.get('/count', function(req, res, next) {
 });
 
 /**
+ * GET /api/characters/shame
+ * Returns 100 lowest ranked characters.
+ */
+router.get('/shame/:start?/:count?', function(req, res, next) {
+    
+    let limit = {start: req.params.start || 0, count: req.params.count || 10};
+    
+    CharactersDAO
+    .getShameCharacters(limit)
+    .then(characters => {
+        res.send({characters: characters, total: 100});
+    })
+    .catch(err => {
+        next(err);
+    });
+});
+
+/**
  * GET /api/characters/:id
  * Returns detailed character information.
  */
 router.get('/:id', function(req, res, next) {
-  var id = req.params.id;
+  let id = req.params.id;
   CharactersDAO
   .getCharacterById(id)
   .then(character => {
@@ -182,6 +200,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 
+
 /**
  * GET /api/characters/top/:start/:count
  * Return :count highest ranked characters from :start position. Filter by gender, race and bloodline.
@@ -195,7 +214,7 @@ router.get('/top/:start?/:count?', function(req, res, next) {
    });
    
    Promise.all([
-       CharactersDAO.getTopCharacters(conditions,limit,'-wins'),
+       CharactersDAO.getTopCharacters(conditions,limit),
        CharactersDAO.getCharacterCount(conditions)
    ])
    .then(results => {
