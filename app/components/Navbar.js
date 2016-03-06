@@ -153,6 +153,62 @@ class Navbar extends React.Component {
                  <MenuItem eventKey={6} href="#">Hall of Shame</MenuItem>
               </LinkContainer>
             </NavDropdown>
+            <NavDropdown eventKey={7} title="Female" id="basic-nav-dropdown">
+                <LinkContainer to={{ pathname: '/female'}}>
+                    <MenuItem eventKey={7.1} href="#">All</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/caldari'}}>
+                    <MenuItem eventKey={7.2} href="#">Caldari</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/caldari/achura'}}>
+                    <MenuItem eventKey={7.3} href="#">Achura</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/caldari/civire/'}}>
+                    <MenuItem eventKey={7.4} href="#">Civire</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/caldari/deteis'}}>
+                    <MenuItem eventKey={7.4} href="#">Deteis</MenuItem>
+                </LinkContainer>
+                <MenuItem divider/>
+                <LinkContainer to={{ pathname: '/female/gallente'}}>
+                    <MenuItem eventKey={7.5} href="#">Gallente</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/gallente/gallente'}}>
+                    <MenuItem eventKey={7.6} href="#">Gallente</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/gallente/intaki'}}>
+                    <MenuItem eventKey={7.7} href="#">Intaki</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/gallente/jin-mei'}}>
+                    <MenuItem eventKey={7.8} href="#">Jin-Mei</MenuItem>
+                </LinkContainer>
+                <MenuItem divider/>
+                <LinkContainer to={{ pathname: '/female/minmatar'}}>
+                    <MenuItem eventKey={8} href="#">Minmatar</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/minmatar/brutor'}}>
+                    <MenuItem eventKey={8.1} href="#">Brutor</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/minmatar/sebiestor'}}>
+                    <MenuItem eventKey={8.2} href="#">Sebiestor</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/minmatar/vherokior'}}>
+                    <MenuItem eventKey={8.3} href="#">Vherokior</MenuItem>
+                </LinkContainer>
+                <MenuItem divider/>
+                <LinkContainer to={{ pathname: '/female/amarr'}}>
+                    <MenuItem eventKey={9} href="#">Amarr</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/amarr/amarr'}}>
+                    <MenuItem eventKey={9.1} href="#">Amarr</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/amarr/ni-kunni'}}>
+                    <MenuItem eventKey={9.2} href="#">Ni-Kunni</MenuItem>
+                </LinkContainer>
+                <LinkContainer to={{ pathname: '/female/amarr/khanid'}}>
+                    <MenuItem eventKey={9.3} href="#">Khanid</MenuItem>
+                </LinkContainer>
+            </NavDropdown>
             <LinkContainer to={{ pathname: '/add'}}>
               <NavItem eventKey={4.7} href="#">{this.i18n.t('navbar.add_character')}</NavItem>
             </LinkContainer>
