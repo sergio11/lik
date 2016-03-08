@@ -27,6 +27,7 @@ const plugins = gulpLoadPlugins({
 });
 
 const production = process.env.NODE_ENV === 'production';
+const heroku = process.env.HEROKU_DEPLOYED;
 const dependencies = [
   'alt',
   '@schibstedspain/rosetta',
@@ -81,7 +82,7 @@ gulp.task('browserify-vendor', () => {
     .pipe(plugins.size({
       title: "Vendor Bundle"
     }))
-    .pipe(plugins.notify("Vendor Bundle done!"));
+    .pipe(plugins.if(!heroku,plugins.notify("Vendor Bundle done!")));
 });
 
 /*
@@ -132,7 +133,7 @@ gulp.task('browserify-watch', ['browserify-vendor'], () => {
       .pipe(plugins.size({
         title: "App Bundle"
       }))
-      .pipe(plugins.notify("App Bundle done!"));
+      .pipe(plugins.if(!heroku,plugins.notify("App Bundle done!")));
   }
 });
 
@@ -214,7 +215,7 @@ gulp.task('videos', () => {
  */
 gulp.task('styles', () => {
   return gulp.src('app/stylesheets/main.sass')
-    .pipe(plugins.plumber({errorHandler: plugins.notify.onError("Error in styles task: <%= error.message %>")}))
+    .pipe(plugins.if(!heroku,plugins.plumber({errorHandler: plugins.notify.onError("Error in styles task: <%= error.message %>")})))
     .pipe(plugins.sass())
     .pipe(plugins.autoprefixer())
     .pipe(plugins.if(production, plugins.cssmin()))
