@@ -41,6 +41,15 @@ class CharactersDAO {
               .execAsync();
     }
     
+    getTop100Races(){
+       return Character
+              .find()
+              .sort('-wins')
+              .limit(100)
+              .select('race')
+              .execAsync();
+    }
+    
     save(data){
         return new Character(data).saveAsync();
         

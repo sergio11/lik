@@ -53,6 +53,10 @@ class API {
     report(params){
         return this._sendRequest('POST','/api/report',params);
     }
+    
+    getStats(){
+        return this._sendRequest('GET','/api/stats');
+    }
   
   
 }

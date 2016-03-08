@@ -4,6 +4,7 @@ import xml2js from 'xml2js';
 import httpError from 'http-errors';
 import Character from './models/character';
 import CharactersDAO from './daos/CharactersDAO';
+import _ from 'lodash';
 
 let xml2jsfy = bluebird.promisifyAll(xml2js);
 
@@ -14,6 +15,25 @@ export const userExistenceCheck = function(id){
         else
             return id;
     });
+}
+
+export const getRaceLeader = function(){
+    
+    return CharactersDAO
+    .getTop100Races()
+    .then(characters => {
+        let raceCount =  _.countBy(characters, (character) => { return character.race; });
+        let max = _.max(_.values(raceCount));
+        
+        console.log("Max");
+        console.log(max);
+        let inverted = _.invert(raceCount);
+        let topRace = inverted[max];
+        let topCount = raceCount[topRace];
+        console.log("Top Race : " + topRace);
+        console.log("Top Count : " + topCount);
+        return { race: topRace, count: topCount };
+    })
 }
 
 //return res.status(400).send({ message: 'XML Parse Error' });

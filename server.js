@@ -20,6 +20,8 @@ var config = require('./config');
 //Routes
 var character_routes = require('./routes/character_routes.js');
 var report_routes = require('./routes/report_routes.js');
+var stats_routes = require('./routes/stats_routes.js');
+
 
 const i18n = new Rosetta.default({adapter: new Polyglot()});
 i18n.languages = languages;
@@ -44,6 +46,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/characters', character_routes.default);
 //Report Routes Handling
 app.use('/api/report', report_routes.default);
+//Stats Routes Handling
+app.use('/api/stats', stats_routes.default);
 
 //Routing middleware
 app.use(function(req, res) {
