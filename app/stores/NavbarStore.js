@@ -1,5 +1,6 @@
 import alt from '../alt';
 import NavbarActions from '../actions/NavbarActions';
+import {browserHistory} from 'react-router';
 
 class NavbarStore {
   constructor() {
@@ -17,6 +18,7 @@ class NavbarStore {
 
   onFindCharacterSuccess(data) {
        this.state.search.state = 'success';
+       browserHistory.push(`/characters/${data.characterId}`);
   }
 
   onFindCharacterFail(err) {

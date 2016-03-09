@@ -18,7 +18,7 @@ class NavbarActions {
   findCharacter(searchQuery) {
     api.findCharacter({name:searchQuery})
     .then((data) => {
-      this.actions.findCharacterSuccess(data);
+      this.actions.findCharacterSuccess.defer(data);
     }).catch((err) => {
       this.actions.findCharacterFail(err);
     });

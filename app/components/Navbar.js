@@ -83,11 +83,9 @@ class Navbar extends React.Component {
                     value={this.props.search.value}
                     options={['John', 'Paul', 'George', 'Ringo']}
                     maxVisible={2}
+                    onKeyDown={NavbarActions.updateSearchQuery}
                     customClasses={{
                         input: 'form-control'
-                    }}
-                    inputProps={{
-                        onChange: NavbarActions.updateSearchQuery
                     }}
                 />
                 <Button type='submit' className='btn btn-primary'><Glyphicon glyph="search" /></Button>
