@@ -22,7 +22,6 @@ class Character extends React.Component {
     }
 
     componentDidMount() {
-        
         CharacterActions.getCharacter(this.props.params.id);
     }
 

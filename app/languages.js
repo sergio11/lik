@@ -45,6 +45,10 @@ export default {
           'wins': 'Victorias',
           'losses': 'Derrotas'
     },
+    'not_found':{
+        'title': 'Ops! Página no encontrada',
+        'content': 'La página solicitada no se encontró'  
+    },
     'add_character':{
       'panel_title': 'Añadir nuevo personaje',
       'character_name': {
@@ -108,10 +112,14 @@ export default {
         'losses': 'Losses'
     },
     'character_list':{
-          'race': 'Race',
-          'bloodline': 'Bloodline',
-          'wins': 'Wins',
-          'losses': 'Losses'
+        'race': 'Race',
+        'bloodline': 'Bloodline',
+        'wins': 'Wins',
+        'losses': 'Losses'
+    },
+    'not_found':{
+        'title': 'Ops! Page not found',
+        'content': 'The requested page, it can not found'  
     },
     'add_character':{
       'panel_title': 'Add Character',
