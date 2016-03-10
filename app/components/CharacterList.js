@@ -18,8 +18,9 @@ class CharacterList extends React.Component {
       return CharacterListStore.getState();
     }
     
-    constructor(props) {
-        super(props);
+    constructor(props,context) {
+        super(props,context);
+        this.i18n = context.i18n;
     }
 
     componentDidUpdate(prevProps) {
@@ -69,11 +70,11 @@ class CharacterList extends React.Component {
                                                 <h4 className='media-heading'>
                                                     <Link to={'/characters/' + character.characterId}>{character.name}</Link>
                                                 </h4>
-                                                <small>Race: <strong>{character.race}</strong></small>
+                                                <small>{this.i18n.t('character_list.race')}: <strong>{character.race}</strong></small>
                                                 <br />
-                                                <small>Bloodline: <strong>{character.bloodline}</strong></small>
+                                                <small>{this.i18n.t('character_list.bloodline')}: <strong>{character.bloodline}</strong></small>
                                                 <br />
-                                                <small>Wins: <strong>{character.wins}</strong> Losses: <strong>{character.losses}</strong></small>
+                                                <small>{this.i18n.t('character_list.wins')}: <strong>{character.wins}</strong>  {this.i18n.t('character_list.losses')}: <strong>{character.losses}</strong></small>
                                             </div>
                                         </div>
                                     </div>
@@ -100,5 +101,9 @@ class CharacterList extends React.Component {
        
     }
 }
+
+CharacterList.contextTypes = {
+    i18n: React.PropTypes.object
+};
 
 export default connectToStores(CharacterList);

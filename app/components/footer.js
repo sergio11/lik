@@ -15,8 +15,9 @@ class Footer extends React.Component {
       return FooterStore.getState();
   }
 
-  constructor(props) {
-    super(props);
+  constructor(props,context) {
+    super(props,context);
+    this.i18n = context.i18n;
   }
 
   componentDidMount() {
@@ -29,13 +30,13 @@ class Footer extends React.Component {
         <Grid fluid>
             <Row className="show-grid">
               <Col sm={5}>
-                <h3 className='lead'><strong>Information</strong> and <strong>Copyright</strong></h3>
-                <p>Powered by <strong>Node.js</strong>, <strong>MongoDB</strong> and <strong>React</strong> with Flux architecture and server-side rendering.</p>
-                <p>You may view the <a href='https://github.com/sergio11/lik' target='_blank'>Source Code</a> behind this project on GitHub.</p>
+                <h3 className='lead' dangerouslySetInnerHTML={{__html: this.i18n.t('footer.copyright.title')}}></h3>
+                <p dangerouslySetInnerHTML={{__html: this.i18n.t('footer.copyright.powered_by')}}></p>
+                <p dangerouslySetInnerHTML={{__html: this.i18n.t('footer.copyright.repository')}}></p>
                 <p>© 2016 Sergio Sánchez Sánchez.</p>
               </Col>
               <Col sm={7} xsHidden>
-                <h3 className='lead'><strong>Leaderboard</strong> Top 5 Characters</h3>
+                <h3 className='lead' dangerouslySetInnerHTML={{__html: this.i18n.t('footer.top')}}></h3>
                 <ul className='list-inline'>
                   {this.props.characters.map((character) => {
                     return (
@@ -54,5 +55,10 @@ class Footer extends React.Component {
     );
   }
 }
+
+
+Footer.contextTypes = {
+    i18n: React.PropTypes.object
+};
 
 export default connectToStores(Footer);

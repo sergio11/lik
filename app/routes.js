@@ -9,7 +9,7 @@ import Stats from './components/Stats';
 
 
 const AppRouter = (props, context) => {
-  context.i18n.culture = 'es';
+  context.i18n.culture = 'en';
   return (<App {...props} />);
 }
 

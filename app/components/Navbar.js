@@ -93,14 +93,14 @@ class Navbar extends React.Component {
           </NavBarB.Form>
           <Nav>
             <LinkContainer to={{ pathname: '/'}}>
-              <NavItem eventKey={1} href="#">Home</NavItem>
+              <NavItem eventKey={1} href="#">{this.i18n.t('navbar.home')}</NavItem>
             </LinkContainer>
             <LinkContainer to={{ pathname: '/stats'}}>
-              <NavItem eventKey={2} href="#">Stats</NavItem>
+              <NavItem eventKey={2} href="#">{this.i18n.t('navbar.stats')}</NavItem>
             </LinkContainer>
             <NavDropdown eventKey={3} title="Top 100" id="basic-nav-dropdown">
               <LinkContainer to={{ pathname: '/top'}}>
-                <MenuItem eventKey={3.1} href="#">Top Overall</MenuItem>
+                <MenuItem eventKey={3.1} href="#">{this.i18n.t('navbar.top_overall')}</MenuItem>
               </LinkContainer>
               <MenuItem divider/>
               <MenuItem header>Caldari</MenuItem>
@@ -148,12 +148,12 @@ class Navbar extends React.Component {
               </LinkContainer>
               <MenuItem divider/>
               <LinkContainer to={{ pathname: '/shame'}}>
-                 <MenuItem eventKey={6} href="#">Hall of Shame</MenuItem>
+                 <MenuItem eventKey={6} href="#">{this.i18n.t('navbar.hall_of_shame')}</MenuItem>
               </LinkContainer>
             </NavDropdown>
-            <NavDropdown eventKey={7} title="Female" id="female-dropdown">
+            <NavDropdown eventKey={7} title={this.i18n.t('navbar.female')} id="female-dropdown">
                 <LinkContainer to={{ pathname: '/female'}}>
-                    <MenuItem eventKey={7.1} href="#">All</MenuItem>
+                    <MenuItem eventKey={7.1} href="#">{this.i18n.t('navbar.all')}</MenuItem>
                 </LinkContainer>
                 <LinkContainer to={{ pathname: '/female/caldari'}}>
                     <MenuItem eventKey={7.2} href="#">Caldari</MenuItem>
@@ -207,9 +207,9 @@ class Navbar extends React.Component {
                     <MenuItem eventKey={9.3} href="#">Khanid</MenuItem>
                 </LinkContainer>
             </NavDropdown>
-            <NavDropdown eventKey={10} title="Male" id="male-dropdown">
+            <NavDropdown eventKey={10} title={this.i18n.t('navbar.male')} id="male-dropdown">
                 <LinkContainer to={{ pathname: '/male'}}>
-                    <MenuItem eventKey={10.1} href="#">All</MenuItem>
+                    <MenuItem eventKey={10.1} href="#">{this.i18n.t('navbar.all')}</MenuItem>
                 </LinkContainer>
                 <MenuItem divider/>
                 <LinkContainer to={{ pathname: '/male/caldari'}}>

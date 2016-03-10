@@ -16,8 +16,9 @@ class Character extends React.Component {
       return CharacterStore.getState();
     }
     
-    constructor(props) {
-        super(props);
+    constructor(props,context) {
+        super(props,context);
+        this.i18n = context.i18n;
     }
 
     componentDidMount() {
@@ -56,28 +57,32 @@ class Character extends React.Component {
                    </Col>
                    <Col xs={6} md={8}>
                       <h2 className='invert'><strong>{this.props.name}</strong></h2>
-                      <h4 className='lead invert'>Race: <strong>{this.props.race}</strong></h4>
-                      <h4 className='lead invert'>Bloodline: <strong>{this.props.bloodline}</strong></h4>
-                      <h4 className='lead invert'>Gender: <strong>{this.props.gender}</strong></h4>
+                      <h4 className='lead invert'>{this.i18n.t('character.race')}: <strong>{this.props.race}</strong></h4>
+                      <h4 className='lead invert'>{this.i18n.t('character.bloodline')}: <strong>{this.props.bloodline}</strong></h4>
+                      <h4 className='lead invert'>{this.i18n.t('character.gender')}: <strong>{this.props.gender}</strong></h4>
                       <button className='btn btn-transparent'
                            onClick={CharacterActions.report.bind(this, this.props.characterId)}
                            disabled={this.props.isReported}>
-                           {this.props.isReported ? 'Reported' : 'Report Character'}
+                           {this.props.isReported ? this.i18n.t('character.reported') : this.i18n.t('character.report')}
                        </button>
                     </Col>
                 </Row>
                 <Row>
                     <Col xs={12} className='profile-stats'>
                         <ul>
-                           <li><span className='stats-number'>{this.props.winLossRatio}</span>Winning Percentage</li>
-                           <li><span className='stats-number'>{this.props.wins}</span> Wins</li>
-                           <li><span className='stats-number'>{this.props.losses}</span> Losses</li>
+                           <li><span className='stats-number'>{this.props.winLossRatio}</span>{this.i18n.t('character.percentage')}</li>
+                           <li><span className='stats-number'>{this.props.wins}</span>{this.i18n.t('character.wins')}</li>
+                           <li><span className='stats-number'>{this.props.losses}</span>{this.i18n.t('character.losses')}</li>
                         </ul>
                      </Col>
                  </Row>
              </Grid>
         );
     }
+}
+
+Character.contextTypes = {
+    i18n: React.PropTypes.object
 }
 
 export default connectToStores(Character);
