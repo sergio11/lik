@@ -1,0 +1,39 @@
+<rt-require dependency="react-bootstrap/Grid" as="Grid"/>
+<rt-require dependency="react-bootstrap/Row" as="Row"/>
+<rt-require dependency="react-bootstrap/Col" as="Col"/>
+<rt-require dependency="react-bootstrap/Panel" as="Panel"/>
+<rt-require dependency="react-bootstrap/Input" as="Input"/>
+<rt-require dependency="react-bootstrap/ButtonInput" as="ButtonInput"/>
+
+<Grid>
+    <Row>
+        <Col sm={8}>
+          <Panel header={this.i18n.t('add_character.panel_title')} bsStyle="primary" class='flipInX animated'>
+             <form onSubmit="{this.handleSubmit.bind(this)}">
+               <Input type="text"
+                  bsStyle="success"
+                  hasFeedback=true
+                  label={this.i18n.t('add_character.character_name.label')}
+                  value={this.props.character_name.value}
+                  placeholder={this.i18n.t('add_character.character_name.placeholder')}
+                  help="vamos!!"
+                  autoFocus
+                  onChange="{this.onChangeName.bind(this)}"/>
+                <Input type='radio'
+                  name='gender'
+                  label={this.i18n.t('add_character.gender.female')}
+                  defaultChecked="{this.props.gender == 'female' ? true : false}"
+                  value='Female'
+                  onChange="{this.onChangeGender.bind(this)}"/>
+                <Input type='radio'
+                  name='gender'
+                  label={this.i18n.t('add_character.gender.male')}
+                  defaultChecked="{this.props.gender == 'male' ? true : false}"
+                  value='Male'
+                  onChange="{this.onChangeGender.bind(this)}" />
+              <ButtonInput bsStyle="primary" type="submit" value={this.i18n.t('add_character.submit')} disabled="{this.props.character_name.status == 'valid' ? false :true}"/>
+             </form>
+          </Panel>
+       </Col>
+   </Row>
+</Grid>

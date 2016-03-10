@@ -21,7 +21,8 @@ const plugins = gulpLoadPlugins({
     'gulp-sourcemaps': 'sourcemaps',
     'gulp-imagemin': 'imagemin',
     'gulp-size': 'size',
-    'gulp-notify': 'notify'
+    'gulp-notify': 'notify',
+    'gulp-react-templates': 'rt'
   },
   scope: 'devDependencies'
 });
@@ -34,6 +35,7 @@ const dependencies = [
   'react',
   'react-dom',
   'react-router',
+  'react-templates',
   'react-notifications',
   'react-loader',
   'react-custom-scrollbars',
@@ -139,6 +141,18 @@ gulp.task('browserify-watch', ['browserify-vendor'], () => {
 
 /*
  |--------------------------------------------------------------------------
+ | Copile React Templates
+ |--------------------------------------------------------------------------
+ */
+
+gulp.task('rt', function() {
+    gulp.src('app/components/**/*.rt')
+        .pipe(plugins.rt({modules: 'es6'}))
+        .pipe(gulp.dest('app/components/**/'));
+});
+
+/*
+ |--------------------------------------------------------------------------
  | Copy vendor assets
  |--------------------------------------------------------------------------
  */
@@ -229,5 +243,5 @@ gulp.task('watch', () => {
   gulp.watch('app/stylesheets/**/*.sass', ['styles']);
 });
 
-gulp.task('default', ['styles','fonts','copy', 'images','videos','vendor', 'browserify-watch', 'watch']);
-gulp.task('build', ['styles', 'fonts','copy','images','videos','vendor', 'browserify']);
+gulp.task('default', ['styles','fonts','copy', 'images','videos','vendor','rt', 'browserify-watch', 'watch']);
+gulp.task('build', ['styles', 'fonts','copy','images','videos','vendor','rt', 'browserify']);

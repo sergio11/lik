@@ -3,3 +3,4 @@
 /bower_components/
 /npm-global/
 /tmp/
+/app/components/**/*.rt.js
