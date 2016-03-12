@@ -8,15 +8,15 @@
 <Grid>
     <Row>
         <Col sm={8}>
-          <Panel header={this.i18n.t('add_character.panel_title')} bsStyle="primary" class='flipInX animated'>
-             <form onSubmit="{this.handleSubmit.bind(this)}">
+          <Panel header={this.i18n.t('add_character.panel_title')} bsStyle="primary" class='flipInX animated' >
+             <form onSubmit="{this.handleSubmit.bind(this)}" rt-scope="this.characterNameStyle(this.props.character_name.status) as characterNameStyle; this.characterNameHelpText(this.props.character_name.status) as characterNameHelpText">
                <Input type="text"
-                  bsStyle="success"
-                  hasFeedback=true
+                  bsStyle="{characterNameStyle}"
+                  hasFeedback="{true}"
                   label={this.i18n.t('add_character.character_name.label')}
                   value={this.props.character_name.value}
                   placeholder={this.i18n.t('add_character.character_name.placeholder')}
-                  help="vamos!!"
+                  help="{characterNameHelpText}"
                   autoFocus
                   onChange="{this.onChangeName.bind(this)}"/>
                 <Input type='radio'

@@ -36,6 +36,7 @@ class AddCharacter extends React.Component {
 
     onChangeGender(e){
         let gender = e.target.value;
+        AddCharacterActions.updateGender(gender);
     }
 
     handleSubmit(event) {
@@ -48,18 +49,23 @@ class AddCharacter extends React.Component {
         }
 
     }
+    
+    characterNameStyle(status) {
+        if (status == 'invalid') return 'error';
+        if (status == 'valid') return 'success';
+        return "warning";            
+    }
+    
+    characterNameHelpText(status) {
+        let help = null;
+        if (status == 'invalid'){
+            help = this.i18n.t('add_character.character_name.empty');
+        }
+        return help;    
+    }
 
 
     render() {
-        /*
-let characterNameStyle,characterNameHelpBlock;
-        if (this.props.character_name.status == 'invalid') {
-        characterNameStyle = 'error';
-        characterNameHelpBlock = this.i18n.t('add_character.character_name.empty');
-        }else if (this.props.character_name.status == 'valid') {
-        characterNameStyle = 'success';
-        } */
-        //{characterNameStyle ? true : false}
         return Template.apply(this,[]);
     }
 }

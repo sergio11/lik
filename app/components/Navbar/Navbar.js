@@ -36,7 +36,11 @@ class Navbar extends React.Component {
     NavbarActions.getCharacterCount();
 
   }
-
+  
+  onKeyDown(event){
+      NavbarActions.updateSearchQuery(event.target.value);
+  }
+  
   handleSubmit(event) {
     event.preventDefault();
     

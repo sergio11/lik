@@ -29,8 +29,8 @@ class NavbarStore {
     this.state.onlineUsers = data.onlineUsers;
   }
 
-  onUpdateSearchQuery(event) {
-    this.state.search.value = event.target.value;
+  onUpdateSearchQuery(value) {
+    this.state.search.value = value;
     this.state.search.state = 'dirty';
   }
 

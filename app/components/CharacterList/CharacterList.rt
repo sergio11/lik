@@ -42,7 +42,7 @@
          marginPagesDisplayed="{2}"
          pageRangeDisplayed="{5}"
          activeClassName="active"
-         containerClassName=""
+         containerClassName="{''}"
          subContainerClassName="pagination"
          initialSelected="{this.props.currentPage}"
          forceSelected="{this.props.currentPage}"

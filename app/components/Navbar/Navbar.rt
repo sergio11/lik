@@ -13,7 +13,7 @@
 
 <NavBarB inverse fixedTop>
     <NavBarB.Header staticTop>
-        <div rt-class="{'fadeIn': this.props.search.state == 'dirty','fadeOut': this.props.search.state !== 'dirty'}" class="animated">
+        <div rt-class="{fadeIn: this.props.search.state == 'dirty' , fadeOut: this.props.search.state != 'dirty' }" class="animated">
           <div class='loader'>
              <span></span>
              <span></span>
@@ -27,7 +27,7 @@
         <NavBarB.Toggle />
      </NavBarB.Header>
      <NavBarB.Collapse>
-        <NavBarB.Form pullLeft rt-class="{'has-success':this.props.search.state == 'success','has-error': this.props.search.state == 'fail','shake': this.props.search.state == 'fail'}" class="animated">
+        <NavBarB.Form pullLeft rt-class="{'has-success': true ,'has-error': this.props.search.state == 'fail' ,'shake': this.props.search.state == 'fail' }" class="animated">
           <form class="form-horizontal" onSubmit="{this.handleSubmit.bind(this)}">
             <Typeahead
                class="form-group"
@@ -35,6 +35,7 @@
                value="{this.props.search.value}"
                options="{['John', 'Paul', 'George', 'Ringo']}"
                maxVisible="{2}"
+               onKeyDown="{this.onKeyDown.bind(this)}"
                customClasses="{{input: 'form-control'}}" />
              <Button type='submit' class='btn btn-primary'><Glyphicon glyph="search" /></Button>
           </form>

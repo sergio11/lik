@@ -19,6 +19,12 @@ class AddCharacterStore {
     this.state.character_name.status = 'pristine';
     this.state.gender = 'female';
   }
+  
+  onUpdateGender(gender){
+      console.log("Actualizando Género");
+      console.log(gender);
+    //this.state.gender = 
+  }
 
   onAddCharacterFail() {}
 
