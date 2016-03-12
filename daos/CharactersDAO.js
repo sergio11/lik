@@ -59,6 +59,13 @@ class CharactersDAO {
                .execAsync();
     }
     
+    getTotalVotes(){
+        return Character.aggregateAsync({ $group: { _id: null, total: { $sum: '$wins' } } }).then(totalVotes => {
+           return totalVotes.length ? totalVotes[0].total : 0;
+        })
+    }
+    
+    
     save(data){
         return new Character(data).saveAsync();
         

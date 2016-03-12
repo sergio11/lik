@@ -22,10 +22,11 @@ router.get('/', (req, res, next) => {
         CharactersDAO.getCharacterCount({ gender: 'Male' }),
         CharactersDAO.getCharacterCount({ gender: 'Female' }),
         getRaceLeader(),
-        getBloodlineLeader()
+        getBloodlineLeader(),
+        CharactersDAO.getTotalVotes()
     ])
     .then(results => {
-        
+        //return stats.
         res.send({
             totalCount: results[0],
             amarrCount: results[1],
@@ -35,10 +36,8 @@ router.get('/', (req, res, next) => {
             maleCount: results[5],
             femaleCount: results[6],
             leadingRace: results[7],
-            leadingBloodline: results[8]
-            //totalVotes: results[7],
-           
-            
+            leadingBloodline: results[8],
+            totalVotes: results[9]
         });
 
     })
