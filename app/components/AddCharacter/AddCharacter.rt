@@ -1,9 +1,9 @@
-<rt-require dependency="react-bootstrap/Grid" as="Grid"/>
-<rt-require dependency="react-bootstrap/Row" as="Row"/>
-<rt-require dependency="react-bootstrap/Col" as="Col"/>
-<rt-require dependency="react-bootstrap/Panel" as="Panel"/>
-<rt-require dependency="react-bootstrap/Input" as="Input"/>
-<rt-require dependency="react-bootstrap/ButtonInput" as="ButtonInput"/>
+<rt-require dependency="react-bootstrap/lib/Grid" as="Grid"/>
+<rt-require dependency="react-bootstrap/lib/Row" as="Row"/>
+<rt-require dependency="react-bootstrap/lib/Col" as="Col"/>
+<rt-require dependency="react-bootstrap/lib/Panel" as="Panel"/>
+<rt-require dependency="react-bootstrap/lib/Input" as="Input"/>
+<rt-require dependency="react-bootstrap/lib/ButtonInput" as="ButtonInput"/>
 
 <Grid>
     <Row>

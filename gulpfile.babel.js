@@ -35,7 +35,6 @@ const dependencies = [
   'react',
   'react-dom',
   'react-router',
-  'react-templates',
   'react-notifications',
   'react-loader',
   'react-custom-scrollbars',
@@ -87,12 +86,29 @@ gulp.task('browserify-vendor', () => {
     .pipe(plugins.if(!heroku,plugins.notify("Vendor Bundle done!")));
 });
 
+
+/*
+ |--------------------------------------------------------------------------
+ | Copile React Templates
+ |--------------------------------------------------------------------------
+ */
+
+gulp.task('rt', function() {
+    return gulp.src('app/components/**/*.rt')
+        .pipe(plugins.rt({modules: 'es6'}))
+        .pipe(gulp.dest('app/components'))
+        .pipe(plugins.size({
+            title: "React Templates"
+        }))
+});
+
+
 /*
  |--------------------------------------------------------------------------
  | Compile only project files, excluding all third-party dependencies.
  |--------------------------------------------------------------------------
  */
-gulp.task('browserify', ['browserify-vendor'], () => {
+gulp.task('browserify', ['browserify-vendor','rt'], () => {
   return browserify({ entries: 'app/main.js', debug: true })
     .external(dependencies)
     .transform(babelify, { presets: ['es2015', 'react'] })
@@ -112,7 +128,7 @@ gulp.task('browserify', ['browserify-vendor'], () => {
  | Same as browserify task, but will also watch for changes and re-compile.
  |--------------------------------------------------------------------------
  */
-gulp.task('browserify-watch', ['browserify-vendor'], () => {
+gulp.task('browserify-watch', ['browserify-vendor','rt'], () => {
   let bundler = watchify(browserify({ entries: 'app/main.js', debug: true }, watchify.args));
   bundler.external(dependencies);
   bundler.transform(babelify, { presets: ['es2015', 'react'] })
@@ -139,17 +155,6 @@ gulp.task('browserify-watch', ['browserify-vendor'], () => {
   }
 });
 
-/*
- |--------------------------------------------------------------------------
- | Copile React Templates
- |--------------------------------------------------------------------------
- */
-
-gulp.task('rt', function() {
-    gulp.src('app/components/**/*.rt')
-        .pipe(plugins.rt({modules: 'es6'}))
-        .pipe(gulp.dest('app/components/**/'));
-});
 
 /*
  |--------------------------------------------------------------------------
@@ -243,5 +248,5 @@ gulp.task('watch', () => {
   gulp.watch('app/stylesheets/**/*.sass', ['styles']);
 });
 
-gulp.task('default', ['styles','fonts','copy', 'images','videos','vendor','rt', 'browserify-watch', 'watch']);
-gulp.task('build', ['styles', 'fonts','copy','images','videos','vendor','rt', 'browserify']);
+gulp.task('default', ['styles','fonts','copy', 'images','videos','vendor', 'browserify-watch', 'watch']);
+gulp.task('build', ['styles', 'fonts','copy','images','videos','vendor', 'browserify']);

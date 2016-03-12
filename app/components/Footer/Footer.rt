@@ -1,0 +1,28 @@
+<rt-require dependency="react-router/lib/Link" as="Link"/>
+<rt-require dependency="react-bootstrap/lib/Grid" as="Grid"/>
+<rt-require dependency="react-bootstrap/lib/Row" as="Row"/>
+<rt-require dependency="react-bootstrap/lib/Col" as="Col"/>
+<rt-require dependency="react-bootstrap/lib/Image" as="Image"/>
+
+<footer>
+  <Grid fluid>
+    <Row class="show-grid">
+      <Col sm={5}>
+        <h3 class='lead' dangerouslySetInnerHTML="{{__html: this.i18n.t('footer.copyright.title')}}"></h3>
+        <p dangerouslySetInnerHTML="{{__html: this.i18n.t('footer.copyright.powered_by')}}"></p>
+        <p dangerouslySetInnerHTML="{{__html: this.i18n.t('footer.copyright.repository')}}"></p>
+        <p>© 2016 Sergio Sánchez Sánchez.</p>
+      </Col>
+      <Col sm={7} xsHidden>
+        <h3 class='lead' dangerouslySetInnerHTML="{{__html: this.i18n.t('footer.top')}}"></h3>
+        <ul class='list-inline'>
+            <li rt-repeat="character in this.props.characters" key="{character.characterId}">
+               <Link to="{'/characters/' + character.characterId}">
+                 <Image src="{'http://image.eveonline.com/Character/' + character.characterId + '_128.jpg'}" thumbnail />
+               </Link>
+            </li>
+         </ul>
+       </Col>
+    </Row>
+  </Grid>
+</footer>

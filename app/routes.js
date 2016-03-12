@@ -1,12 +1,12 @@
 import React from 'react';
 import {Route,IndexRoute, NotFoundRoute} from 'react-router';
-import App from './components/app';
-import Home from './components/Home';
-import AddCharacter from './components/AddCharacter';
-import Character from './components/Character';
-import CharacterList from './components/CharacterList';
-import Stats from './components/Stats';
-import NotFound from './components/NotFound';
+import App from './components/App/App';
+import Home from './components/Home/Home';
+import AddCharacter from './components/AddCharacter/AddCharacter';
+import Character from './components/Character/Character';
+import CharacterList from './components/CharacterList/CharacterList';
+import Stats from './components/Stats/Stats';
+import NotFound from './components/NotFound/NotFound';
 
 
 const AppRouter = (props, context) => {

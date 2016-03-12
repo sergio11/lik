@@ -1,10 +1,8 @@
 import React from 'react';
-import {Grid, Row, Col, Image} from 'react-bootstrap';
-import ImageLoader from 'react-imageloader';
-import CharacterStore from '../stores/CharacterStore';
-import CharacterActions from '../actions/CharacterActions';
-import Loader  from 'react-loader';
+import CharacterStore from '../../stores/CharacterStore';
+import CharacterActions from '../../actions/CharacterActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
+import Template from './Character.rt.js';
 
 class Character extends React.Component {
     
@@ -36,47 +34,16 @@ class Character extends React.Component {
         }
     }
     
+    report(characterId){
+        CharacterActions.report(characterId);
+    }
+    
     _preloader() {
         return <img src='/img/loader.gif' />;
     }
 
     render() {
-
-        return (
-            <Grid>
-               <Row>
-                  <Col xs={6} md={4}>
-                    <ImageLoader
-                        src={'https://image.eveonline.com/Character/' + this.props.characterId + '_256.jpg'}
-                        imgProps={{'thumbnail':true}}
-                        wrapper={React.DOM.div}
-                        preloader={this._preloader}>
-                        Image load failed!
-                    </ImageLoader>
-                   </Col>
-                   <Col xs={6} md={8}>
-                      <h2 className='invert'><strong>{this.props.name}</strong></h2>
-                      <h4 className='lead invert'>{this.i18n.t('character.race')}: <strong>{this.props.race}</strong></h4>
-                      <h4 className='lead invert'>{this.i18n.t('character.bloodline')}: <strong>{this.props.bloodline}</strong></h4>
-                      <h4 className='lead invert'>{this.i18n.t('character.gender')}: <strong>{this.props.gender}</strong></h4>
-                      <button className='btn btn-transparent'
-                           onClick={CharacterActions.report.bind(this, this.props.characterId)}
-                           disabled={this.props.isReported}>
-                           {this.props.isReported ? this.i18n.t('character.reported') : this.i18n.t('character.report')}
-                       </button>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs={12} className='profile-stats'>
-                        <ul>
-                           <li><span className='stats-number'>{this.props.winLossRatio}</span>{this.i18n.t('character.percentage')}</li>
-                           <li><span className='stats-number'>{this.props.wins}</span>{this.i18n.t('character.wins')}</li>
-                           <li><span className='stats-number'>{this.props.losses}</span>{this.i18n.t('character.losses')}</li>
-                        </ul>
-                     </Col>
-                 </Row>
-             </Grid>
-        );
+        return Template.apply(this,[]);
     }
 }
 

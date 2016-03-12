@@ -1,0 +1,24 @@
+<rt-require dependency="react-background-video" as="BackgroundVideo"/>
+<rt-require dependency="react-notifications" as="Notifications"/>
+<rt-require dependency="../Navbar/Navbar" as="Navbar"/>
+<rt-require dependency="../Footer/Footer" as="Footer"/>
+
+<BackgroundVideo 
+    videos="{[
+        {
+            src: 'http://localhost:3000/videos/video_1.mp4',
+            type: 'video/mp4'
+        },
+        {
+            src: 'http://localhost:3000/videos/video_1.ogg',
+            type: 'video/ogg'
+        }
+    
+    ]}" autoPlay loop poster='http://localhost:3000/img/fondo.jpg' muted overlay>
+    <Navbar />
+    <Notifications notifications="{this.props.notifications}" onRequestHide="{this.handleRequestHide.bind(this)}"/>
+    <main class='main'>
+        {this.props.children}
+    </main>
+    <Footer />
+</BackgroundVideo>

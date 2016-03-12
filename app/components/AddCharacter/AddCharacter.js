@@ -1,8 +1,8 @@
 import React from 'react';
-import AddCharacterStore from '../stores/AddCharacterStore';
-import AddCharacterActions from '../actions/AddCharacterActions';
+import AddCharacterStore from '../../stores/AddCharacterStore';
+import AddCharacterActions from '../../actions/AddCharacterActions';
 import connectToStores from 'alt-utils/lib/connectToStores';
-import template from './AddCharacter.rt';
+import Template from './AddCharacter.rt.js';
 
 class AddCharacter extends React.Component {
     
@@ -60,7 +60,7 @@ let characterNameStyle,characterNameHelpBlock;
         characterNameStyle = 'success';
         } */
         //{characterNameStyle ? true : false}
-        return template();
+        return Template.apply(this,[]);
     }
 }
 

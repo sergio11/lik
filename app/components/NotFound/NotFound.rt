@@ -1,0 +1,9 @@
+<rt-require dependency="react-router/lib/Link" as="Link"/>
+<rt-require dependency="react-bootstrap/lib/Alert" as="Alert"/>
+
+<div class='container'>
+    <Alert bsStyle="danger">
+      <h4>{this.i18n.t('not_found.title')}</h4>
+      <p>{this.i18n.t('not_found.content')}</p>
+    </Alert>
+ </div>

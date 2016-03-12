@@ -1,6 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router';
-import {Alert} from 'react-bootstrap';
+import Template from './NotFound.rt.js';
 
 class NotFound extends React.Component{
     
@@ -10,16 +9,7 @@ class NotFound extends React.Component{
     }
     
     render() {
-        
-        return (
-            <div className='container'>
-                <Alert bsStyle="danger">
-                    <h4>{this.i18n.t('not_found.title')}</h4>
-                    <p>{this.i18n.t('not_found.content')}</p>
-                </Alert>
-            </div>
-        )
-        
+        return Template.apply(this,[]);
     }
     
 }

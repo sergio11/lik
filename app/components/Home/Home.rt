@@ -1,0 +1,27 @@
+<rt-require dependency="react-router/lib/Link" as="Link"/>
+<rt-require dependency="react-bootstrap/lib/Grid" as="Grid"/>
+<rt-require dependency="react-bootstrap/lib/Row" as="Row"/>
+<rt-require dependency="react-bootstrap/lib/Thumbnail" as="Thumbnail"/>
+<rt-require dependency="react-loader" as="Loader"/>
+
+<Grid>
+    <Row>
+      <h3 class='text-center col-xs-12 invert'>{this.i18n.t('home.title')}</h3>
+    </Row>
+    <Row>
+        <Loader loaded="{this.props.loaded}" width="{10}" color='#fff'>
+          <div rt-repeat="character in this.props.characters" key="{character.characterId}" class="{characterIndex === 0 ? 'col-xs-6 col-sm-6 col-md-5 col-md-offset-1' : 'col-xs-6 col-sm-6 col-md-5'}">
+             <Thumbnail class="fadeInUp animated" onClick="{this.handleClick.bind(this, character)}"  src="{'http://image.eveonline.com/Character/' + character.characterId + '_512.jpg'}" alt="{character.name}">
+                <h3 class='caption text-center'>{character.name}</h3>
+                <ul class='list-inline'>
+                    <li><strong>Race:</strong> {character.race}</li>
+                    <li><strong>Bloodline:</strong> {character.bloodline}</li>
+                </ul>
+                <h4>
+                   <Link to="{'/characters/' + character.characterId}"><strong>{character.name}</strong></Link>
+                </h4>
+              </Thumbnail>
+            </div> 
+         </Loader>
+      </Row>
+ </Grid>
