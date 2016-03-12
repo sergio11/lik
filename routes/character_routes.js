@@ -121,18 +121,21 @@ router.put('/', function(req, res, next) {
           }
           
           return Promise.all([
-              function(){
+              (function(){
+                  console.log("Hi")
+                  console.log(winner.wins);
                   winner.wins++;
+                  console.log("Next : " + winner.wins);
                   winner.voted = true;
                   winner.random = [Math.random(), 0];
                   return winner.saveAsync();
-              },
-              function(){
+              })(),
+              (function(){
                   loser.losses++;
                   loser.voted = true;
                   loser.random = [Math.random(), 0];
                   return loser.saveAsync();
-              }
+              })()
           ])
           
           
