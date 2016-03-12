@@ -50,6 +50,15 @@ class CharactersDAO {
               .execAsync();
     }
     
+    getTop100Bloodline(){
+        return Character
+               .find()
+               .sort('-wins')
+               .limit(100)
+               .select('bloodline')
+               .execAsync();
+    }
+    
     save(data){
         return new Character(data).saveAsync();
         
