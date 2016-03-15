@@ -2,6 +2,7 @@
 <rt-require dependency="react-notifications" as="Notifications"/>
 <rt-require dependency="../Navbar/Navbar" as="Navbar"/>
 <rt-require dependency="../Footer/Footer" as="Footer"/>
+<rt-require dependency="react-media-queryable" as="MediaQueryable"/>
 
 <BackgroundVideo 
     videos="{[
@@ -20,5 +21,10 @@
     <main class='main'>
         {this.props.children}
     </main>
-    <Footer />
+    <MediaQueryable mediaQueries="{{
+        medium: '(min-width: 1063px)',
+        large: '(min-width: 25001px)'
+    }}" defaultMediaQuery="small">
+        <Footer />
+    </MediaQueryable>
 </BackgroundVideo>

@@ -41,6 +41,7 @@ const dependencies = [
   'react-imageloader',
   'react-typeahead',
   'react-paginate',
+  'react-media-queryable',
   'lodash',
   'react-bootstrap',
   'react-router-bootstrap',

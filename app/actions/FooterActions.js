@@ -11,8 +11,8 @@ class FooterActions {
     );
   }
   //Get Top characters
-  getTopCharacters() {
-    api.getTopCharacters({start:0,count:5}).then((data) => {
+  getTopCharacters(count) {
+    api.getTopCharacters({start:0,count:count}).then((data) => {
       this.actions.getTopCharactersSuccess(data)
     }).catch((err) => {
       this.actions.getTopCharactersFail(err);

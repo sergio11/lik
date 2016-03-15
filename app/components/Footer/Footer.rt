@@ -14,7 +14,7 @@
         <p>© 2016 Sergio Sánchez Sánchez.</p>
       </Col>
       <Col sm={7} xsHidden>
-        <h3 class='lead' dangerouslySetInnerHTML="{{__html: this.i18n.t('footer.top')}}"></h3>
+        <h3 class='lead' dangerouslySetInnerHTML="{{__html: this.i18n.t('footer.top',{count: this.props.characters.length})}}"></h3>
         <ul class='list-inline'>
             <li rt-repeat="character in this.props.characters" key="{character.characterId}">
                <Link to="{'/characters/' + character.characterId}">

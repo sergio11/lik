@@ -69,7 +69,7 @@ export default {
             'powered_by': 'Realizado por <strong>Node.js</strong>, <strong>MongoDB</strong> y <strong>React</strong> con arquitectura Flux y renderizado en el servidor.',
             'repository': 'Usted puede ver el <a href="https://github.com/sergio11/lik" target="_blank">código fuente</a> detrás de este proyecto en GitHub.'
         },
-        'top': '<strong>Clasificación</strong> Top 5 Caracteres'     
+        'top': '<strong>Clasificación</strong> Top %{count} Caracteres'     
     }
     
   },
@@ -140,7 +140,7 @@ export default {
             'powered_by': 'Powered by <strong>Node.js</strong>, <strong>MongoDB</strong> and <strong>React</strong> with Flux architecture and server-side rendering.',
             'repository': 'You may view the <a href="https://github.com/sergio11/lik" target="_blank">Source Code</a> behind this project on GitHub.'
         },
-        'top': '<strong>Leaderboard</strong> Top 5 Characters'     
+        'top': '<strong>Leaderboard</strong> Top %{count} Characters'     
     }
   }
 };

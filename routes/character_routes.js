@@ -210,8 +210,8 @@ router.get('/:id', function(req, res, next) {
  */
 router.get('/top/:start?/:count?', function(req, res, next) {
     
-    let conditions = {}, limit = {start: req.params.start || 0, count: req.params.count || 10};
-    
+    let conditions = {}, limit = {start: parseInt(req.params.start) || 0, count: parseInt(req.params.count) || 10};
+
    _.each(req.query, function(value, key) {
         conditions[key] = new RegExp('^' + value + '$', 'i');
    });

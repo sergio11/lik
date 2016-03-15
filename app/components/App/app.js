@@ -16,11 +16,11 @@ class App extends React.Component {
   }
 
   constructor(props){
-    super(props);
+      super(props);
   }
 
   handleRequestHide(notification){
-    AppActions.dropNotification(notification);
+      AppActions.dropNotification(notification);
   };
 
   render() {
