@@ -9,7 +9,7 @@
       <h3 class='text-center col-xs-12 invert'>{this.i18n.t('home.title')}</h3>
     </Row>
     <Row>
-        <Loader loaded="{this.props.loaded}" width="{10}" color='#fff'>
+        <Loader loaded="{this.props.loaded}" width="{10}" color='#fff' top="50%" left="50%" scale="{1.00}">
           <div rt-repeat="character in this.props.characters" key="{character.characterId}" class="{characterIndex === 0 ? 'col-xs-6 col-sm-6 col-md-5 col-md-offset-1' : 'col-xs-6 col-sm-6 col-md-5'}">
              <Thumbnail class="fadeInUp animated" onClick="{this.handleClick.bind(this, character)}"  src="{'http://image.eveonline.com/Character/' + character.characterId + '_512.jpg'}" alt="{character.name}">
                 <h3 class='caption text-center'>{character.name}</h3>

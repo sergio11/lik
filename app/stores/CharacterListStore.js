@@ -9,19 +9,21 @@ class CharacterListStore {
         characters: [],
         total: 0,
         chaPerPage: 10,
-        currentPage: 0
+        currentPage: 0,
+        loaded: true
     }
   }
 
   onGetCharactersSuccess(data) {
       _.assign(this.state,data);
+      this.state.loaded = true;
   }
 
   onGetCharactersFail() {}
-
   
   onUpdateCurrentPage(page){
       this.state.currentPage = page;
+      this.state.loaded = false;
   } 
 }
 

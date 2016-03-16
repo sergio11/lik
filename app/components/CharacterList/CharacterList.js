@@ -39,7 +39,6 @@ class CharacterList extends React.Component {
     }
 
     render() {
-        
         return Template.apply(this,[]);
        
     }

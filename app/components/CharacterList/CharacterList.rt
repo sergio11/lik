@@ -4,48 +4,52 @@
 <rt-require dependency="react-bootstrap/lib/ListGroup" as="ListGroup"/>
 <rt-require dependency="react-paginate" as="ReactPaginate"/>
 <rt-require dependency="react-imageloader" as="ImageLoader"/>
+<rt-require dependency="react-loader" as="Loader"/>
+ 
  
  <Grid>
-    <ListGroup componentClass="ul">
-      <div class='list-group-item animated fadeIn' rt-repeat="character in this.props.characters" key="{character.characterId}">
-         <div class='media'>
-            <span class='position pull-left'>{this.props.currentPage * this.props.chaPerPage + characterIndex + 1}</span>
-            <div class='pull-left thumb-lg'>
-              <Link to="{'/characters/' + character.characterId}">
-                 <ImageLoader
-                     class='media-object'
-                     src="{'http://image.eveonline.com/Character/' + character.characterId + '_128.jpg'}"
-                     imgProps="{{'thumbnail':true}}"
-                     wrapper="{React.DOM.div}"
-                     preloader="{this._preloader}">
-                     Image load failed!
-                 </ImageLoader>
-              </Link>
-             </div>
-             <div class='media-body'>
-                 <h4 class='media-heading'>
-                    <Link to="{'/characters/' + character.characterId}">{character.name}</Link>
-                 </h4>
-                 <small>{this.i18n.t('character_list.race')}: <strong>{character.race}</strong></small>
-                 <br />
-                 <small>{this.i18n.t('character_list.bloodline')}: <strong>{character.bloodline}</strong></small>
-                 <br />
-                 <small>{this.i18n.t('character_list.wins')}: <strong>{character.wins}</strong>  {this.i18n.t('character_list.losses')}: <strong>{character.losses}</strong></small>
-              </div>
+    <Loader loaded="{this.props.loaded}" width="{10}" color='#fff' top="50%" left="50%" scale="{1.00}">
+        <ListGroup componentClass="ul">
+        <div class='list-group-item animated {characterIndex % 2 == 0 ? "slideInLeft" : "slideInRight"}' rt-repeat="character in this.props.characters" key="{character.characterId}">
+            <div class='media'>
+                <span class='position pull-left'>{this.props.currentPage * this.props.chaPerPage + characterIndex + 1}</span>
+                <div class='pull-left thumb-lg'>
+                <Link to="{'/characters/' + character.characterId}">
+                    <ImageLoader
+                        class='media-object'
+                        src="{'http://image.eveonline.com/Character/' + character.characterId + '_128.jpg'}"
+                        imgProps="{{'thumbnail':true}}"
+                        wrapper="{React.DOM.div}"
+                        preloader="{this._preloader}">
+                        Image load failed!
+                    </ImageLoader>
+                </Link>
+                </div>
+                <div class='media-body'>
+                    <h4 class='media-heading'>
+                        <Link to="{'/characters/' + character.characterId}">{character.name}</Link>
+                    </h4>
+                    <small>{this.i18n.t('character_list.race')}: <strong>{character.race}</strong></small>
+                    <br />
+                    <small>{this.i18n.t('character_list.bloodline')}: <strong>{character.bloodline}</strong></small>
+                    <br />
+                    <small>{this.i18n.t('character_list.wins')}: <strong>{character.wins}</strong>  {this.i18n.t('character_list.losses')}: <strong>{character.losses}</strong></small>
+                </div>
+                </div>
             </div>
-          </div>
-      </div>
-    </ListGroup>
-    <Row>
-      <ReactPaginate
-         pageNum="{this.props.total / this.props.chaPerPage}"
-         marginPagesDisplayed="{2}"
-         pageRangeDisplayed="{5}"
-         activeClassName="active"
-         containerClassName="{''}"
-         subContainerClassName="pagination"
-         initialSelected="{this.props.currentPage}"
-         forceSelected="{this.props.currentPage}"
-         clickCallback="{this._nextPage.bind(this)}" />
-    </Row>    
+        </div>
+        </ListGroup>
+        <Row>
+        <ReactPaginate
+            pageNum="{this.props.total / this.props.chaPerPage}"
+            marginPagesDisplayed="{2}"
+            pageRangeDisplayed="{5}"
+            activeClassName="active"
+            containerClassName="{''}"
+            subContainerClassName="pagination"
+            initialSelected="{this.props.currentPage}"
+            forceSelected="{this.props.currentPage}"
+            clickCallback="{this._nextPage.bind(this)}" />
+        </Row>
+      </Loader>  
  </Grid>

@@ -14,7 +14,7 @@
 <NavBarB inverse fixedTop>
     <NavBarB.Header staticTop>
         <div rt-class="{fadeIn: this.props.search.state == 'dirty' , fadeOut: this.props.search.state != 'dirty' }" class="animated">
-          <div class='loader'>
+          <div class='loader-icon'>
              <span></span>
              <span></span>
              <span></span>
