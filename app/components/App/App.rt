@@ -7,15 +7,15 @@
 <BackgroundVideo 
     videos="{[
         {
-            src: 'http://localhost:3000/videos/video_1.mp4',
+            src: 'http://localhost:3000/videos/traffic2.mp4',
             type: 'video/mp4'
         },
         {
-            src: 'http://localhost:3000/videos/video_1.ogg',
-            type: 'video/ogg'
+            src: 'http://localhost:3000/videos/traffic2.webm',
+            type: 'video/webm'
         }
     
-    ]}" autoPlay loop poster='http://localhost:3000/img/fondo.jpg' muted overlay>
+    ]}" autoPlay loop poster='http://localhost:3000/img/traffic2.jpg' muted overlay>
     <Navbar />
     <Notifications notifications="{this.props.notifications}" onRequestHide="{this.handleRequestHide.bind(this)}"/>
     <main class='main'>
