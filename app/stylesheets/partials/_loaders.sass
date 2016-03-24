@@ -1,11 +1,21 @@
 
+.imageloader
+    text-align: center
+    .preloader
+        width: 60px
+        height: 60px
+        margin-top: 1rem
+        
+    
+
+
 @keyframes loader
 	0%, 10%, 100%
+		width: 20px
+		height: 20px
+	65%
 		width: 25px
 		height: 25px
-	65%
-		width: 30px
-		height: 30px
 @keyframes loaderBlock
 	0%, 30%
 		transform: rotate(0)
@@ -27,9 +37,9 @@
 .loader-icon
 	position: absolute
 	top: 50%
-	left: 5%
-	width: 25px
-	height: 25px
+	right: 25%
+	width: 20px
+	height: 20px
 	transform: translate(-50%, -50%) rotate(45deg) translate3d(0,0,0)
 	animation: loader 1.2s infinite ease-in-out
 

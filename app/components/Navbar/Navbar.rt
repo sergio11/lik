@@ -8,21 +8,17 @@
 <rt-require dependency="react-bootstrap/lib/Glyphicon" as="Glyphicon"/>
 <rt-require dependency="react-bootstrap/lib/NavDropdown" as="NavDropdown"/>
 <rt-require dependency="react-bootstrap/lib/MenuItem" as="MenuItem"/>
+<rt-require dependency="react-bootstrap/lib/Image" as="Image"/>
 <rt-require dependency="react-typeahead/lib/Typeahead" as="Typeahead"/>
 <rt-require dependency="react-router-bootstrap/lib/LinkContainer" as="LinkContainer"/>
 
-<NavBarB inverse fixedTop>
+<NavBarB inverse fixedTop fluid>
     <NavBarB.Header staticTop>
-        <div rt-class="{fadeIn: this.props.search.state == 'dirty' , fadeOut: this.props.search.state != 'dirty' }" class="animated">
-          <div class='loader-icon'>
-             <span></span>
-             <span></span>
-             <span></span>
-             <span></span>
-           </div>
-        </div>
         <NavBarB.Brand>
-          <Link to='/'>LIK<Badge class='badge-up badge-danger'>{this.props.onlineUsers}</Badge></Link>
+          <Link to='/'>
+            <Image src="/img/logo.png" height='60'/>
+            <Badge class='badge-up badge-danger'>{this.props.onlineUsers}</Badge>
+          </Link>
         </NavBarB.Brand>
         <NavBarB.Toggle />
      </NavBarB.Header>
@@ -39,6 +35,14 @@
                customClasses="{{input: 'form-control'}}" />
              <Button type='submit' class='btn btn-primary'><Glyphicon glyph="search" /></Button>
           </form>
+          <div rt-class="{'fadeIn': this.props.search.state == 'dirty' , 'fadeOut': true, 'animated': true }">
+            <div class='loader-icon'>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+          </div>
         </NavBarB.Form>
         <Nav>
           <LinkContainer to="{{ pathname: '/'}}">
