@@ -11,6 +11,7 @@
 <rt-require dependency="react-bootstrap/lib/Image" as="Image"/>
 <rt-require dependency="react-typeahead/lib/Typeahead" as="Typeahead"/>
 <rt-require dependency="react-router-bootstrap/lib/LinkContainer" as="LinkContainer"/>
+<rt-require dependency="classNames" as="classNames" />
 
 <NavBarB inverse fixedTop fluid>
     <NavBarB.Header staticTop>
@@ -23,7 +24,7 @@
         <NavBarB.Toggle />
      </NavBarB.Header>
      <NavBarB.Collapse>
-        <NavBarB.Form pullLeft rt-class="{'has-success': true ,'has-error': this.props.search.state == 'fail' ,'shake': this.props.search.state == 'fail' }" class="animated">
+        <NavBarB.Form pullLeft class="{classNames({'has-success': this.props.search.state == 'success' ,'has-error': this.props.search.state == 'fail' ,'shake': this.props.search.state == 'fail' }, 'animated')}">
           <form class="form-horizontal" onSubmit="{this.handleSubmit.bind(this)}">
             <Typeahead
                class="form-group"
@@ -35,10 +36,11 @@
                customClasses="{{input: 'form-control'}}" />
              <Button type='submit' class='btn btn-primary'><Glyphicon glyph="search" /></Button>
           </form>
-          <div rt-class="{'fadeIn': this.props.search.state == 'dirty' , 'fadeOut': true, 'animated': true }">
+          <div class="{classNames({'fadeIn': this.props.search.state == 'dirty' , 'fadeOut': this.props.search.state != 'dirty'}, 'animated')}">
             <div class='loader-icon'>
                 <span></span>
                 <span></span>
+              
                 <span></span>
                 <span></span>
             </div>
