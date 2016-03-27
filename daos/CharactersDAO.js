@@ -65,6 +65,9 @@ class CharactersDAO {
         })
     }
     
+    resetRound(){
+        return Character.updateAsync({}, { $set: { voted: false } }, { multi: true });
+    }
     
     save(data){
         return new Character(data).saveAsync();

@@ -1,7 +1,7 @@
 import express from 'express';
 import _ from 'lodash';
 import httpError from 'http-errors';
-import { getCharacterId, getCharacterInfo, userExistenceCheck } from '../utils';
+import { getTwoRandomCharacters, getCharacterId, getCharacterInfo, userExistenceCheck } from '../utils';
 import CharactersDAO from '../daos/CharactersDAO';
 
 
@@ -12,27 +12,19 @@ const router = express.Router();
  * Returns 2 random characters of the same gender that have not been voted yet.
  */
 router.get('/', function(req, res, next) {
-  let choices = ['Female', 'Male'];
-  var randomGender = _.sample(choices);
-
-  CharactersDAO
-  .getRandomCharacters(2,randomGender)
+  
+  getTwoRandomCharacters()
   .then(characters => {
-      
-      if (characters.length < 2) {
-          let oppositeGender = _.first(_.without(choices, randomGender));
-          return CharactersDAO.getRandomCharacters(2,oppositeGender)
-          
-       }else{
-           return res.send(characters);
-       }
-       
-      /*
-        Character.update({}, { $set: { voted: false } }, { multi: true }, function(err) {
-            if (err) return next(err);
-            res.send([]);
-          });
-      */ 
+      if(!characters || !characters.length){
+          return CharactersDAO.resetRound().then(() => {
+              return getTwoRandomCharacters();
+          })
+      }else{
+          return characters;
+      }
+  })
+  .then(characters => {
+      res.send(characters);
   }).catch(err => {
      return next(err);         
   })
@@ -122,7 +114,6 @@ router.put('/', function(req, res, next) {
           
           return Promise.all([
               (function(){
-                  console.log("Hi")
                   console.log(winner.wins);
                   winner.wins++;
                   console.log("Next : " + winner.wins);

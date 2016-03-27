@@ -17,6 +17,26 @@ export const userExistenceCheck = function(id){
     });
 }
 
+//Returns 2 random characters of the same gender that have not been voted yet.
+export const getTwoRandomCharacters = function(){
+    //genders
+    let choices = ['Female', 'Male'];
+    //random gender.
+    let randomGender = _.sample(choices);
+    
+    return CharactersDAO
+    .getRandomCharacters(2,randomGender)
+    .then(characters => {
+      if (characters.length < 2) {
+          let oppositeGender = _.first(_.without(choices, randomGender));
+          return CharactersDAO.getRandomCharacters(2,oppositeGender)
+       }else{
+           return characters;
+       }
+    });
+}
+
+//Return the current Race Leader.
 export const getRaceLeader = function(){
     
     return CharactersDAO
@@ -36,6 +56,7 @@ export const getRaceLeader = function(){
     })
 }
 
+//Return the Bloodline leader
 export const getBloodlineLeader = function(){
     
     return CharactersDAO
@@ -79,6 +100,7 @@ export const getCharacterId = function(characterName){
 
 };
 
+//Return the Character info
 export const getCharacterInfo = function(id){
     var characterInfoUrl = 'https://api.eveonline.com/eve/CharacterInfo.xml.aspx';
     return request({
