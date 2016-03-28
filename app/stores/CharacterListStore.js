@@ -13,17 +13,27 @@ class CharacterListStore {
         loaded: true
     }
   }
+  
+  onCharacterListLoading(){
+      this.state.loaded = false;
+  }
+  
+  onCharacterListLoaded(){
+      this.state.loaded = true;
+  }
 
   onGetCharactersSuccess(data) {
       _.assign(this.state,data);
-      this.state.loaded = true;
   }
 
   onGetCharactersFail() {}
   
+  onEmptyCharacterList(){
+      this.state.characters = [];
+  }
+  
   onUpdateCurrentPage(page){
       this.state.currentPage = page;
-      this.state.loaded = false;
   } 
 }
 

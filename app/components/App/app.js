@@ -24,7 +24,8 @@ class App extends React.Component {
   };
 
   render() {
-      return Template.apply(this,[]);
+      console.log("Las props ", this.props);
+      return Template.call(this);
   }
 }
 

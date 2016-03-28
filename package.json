@@ -33,6 +33,7 @@
     "express": "^4.13.3",
     "extend": "^3.0.0",
     "http-errors": "^1.4.0",
+    "immutable": "^3.7.6",
     "lodash": "^4.5.0",
     "mongoose": "^4.2.5",
     "morgan": "^1.6.1",

@@ -20,6 +20,14 @@ class CharacterStore {
         }
         
     }
+    
+    onCharacterLoading(){
+        this.state.loaded = false;
+    }
+    
+    onCharacterLoaded(){
+        this.state.loaded = true;
+    }
 
     onGetCharacterSuccess(data) {
         _.assign(this.state, data);
@@ -29,7 +37,6 @@ class CharacterStore {
         this.isReported = contains(reports, this.characterId);*/
         // If is NaN (from division by zero) then set it to "0"
         this.state.isReported = false;
-        this.state.loaded = true;
         this.state.winLossRatio = ((this.state.wins / (this.state.wins + this.state.losses) * 100) || 0).toFixed(1);
     }
 

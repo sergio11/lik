@@ -6,18 +6,24 @@ class CharacterActions {
     
     constructor() {
         this.generateActions(
-        'reportSuccess',
-        'reportFail',
-        'getCharacterSuccess',
-        'getCharacterFail'
+            'reportSuccess',
+            'reportFail',
+            'getCharacterSuccess',
+            'getCharacterFail',
+            'characterLoading',
+            'characterLoaded'
         );
     }
 
     getCharacter(characterId) {
+        
+        this.actions.characterLoading.defer();
+        
         api
         .getCharacter(characterId)
         .then(character => {
             this.actions.getCharacterSuccess(character);
+            this.actions.characterLoaded.defer();
         })
         .catch(err => {
             this.actions.getCharacterFail(err);

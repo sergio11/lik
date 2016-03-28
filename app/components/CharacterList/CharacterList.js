@@ -27,6 +27,10 @@ class CharacterList extends React.Component {
         }
     }
     
+    componentWillUnmount(){
+        CharacterListActions.emptyCharacterList();
+    }
+    
     _nextPage(e){
         //Object { selected: 1 }
         let page = e.selected, limit = {start:this.props.chaPerPage * e.selected,count:this.props.chaPerPage};
@@ -39,7 +43,7 @@ class CharacterList extends React.Component {
     }
 
     render() {
-        return Template.apply(this,[]);
+        return Template.call(this);
        
     }
 }

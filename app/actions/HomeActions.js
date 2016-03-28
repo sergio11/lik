@@ -3,23 +3,24 @@ import api from '../lib/api';
 import AppActions from '../actions/AppActions';
 
 class HomeActions {
+    
   constructor() {
     this.generateActions(
         'getTwoCharactersSuccess',
         'getTwoCharactersFail',
-        'voteFail'
+        'voteFail',
+        'charactersLoading',
+        'charactersLoaded',
+        'emptyCharacters'
     );
   }
   
-  setCharacterLoaded(val){
-      return val;
-  }
-  
   getTwoCharacters() {
-      
+      this.actions.charactersLoading.defer();
       api.getTwoCharacters()
       .then((data) => {
         this.actions.getTwoCharactersSuccess(data);
+        this.actions.charactersLoaded.defer();
       })
       .catch((err) => {
         this.actions.getTwoCharactersFail(err);

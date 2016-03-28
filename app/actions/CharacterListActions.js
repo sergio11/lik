@@ -6,13 +6,18 @@ class CharacterListActions {
     
     constructor() {
         this.generateActions(
-        'getCharactersSuccess',
-        'getCharactersFail'
+            'getCharactersSuccess',
+            'getCharactersFail',
+            'characterListLoading',
+            'characterListLoaded',
+            'emptyCharacterList'
         );
     }
 
     getCharacters(payload,limit) {
-      
+        
+        this.actions.characterListLoading.defer();
+        
         limit = limit || {start:0, count: 10}
         let params = {
             race: payload.race,
@@ -33,6 +38,8 @@ class CharacterListActions {
         }
         
         promise.then(data => {
+            console.log("Character List loaded");
+            this.actions.characterListLoaded.defer();
             this.actions.getCharactersSuccess(data);
         })
         .catch(err => {

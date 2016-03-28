@@ -12,13 +12,20 @@ class HomeStore {
         };
     }
     
-    onSetCharacterLoaded(val){
-        this.state.loaded = val;
+    onCharactersLoaded(){
+        this.state.loaded = true;
     }
     
+    onCharactersLoading(){
+        this.state.loaded = false;
+    }
+
     onGetTwoCharactersSuccess(data) {
-        this.state.loaded = true;
         this.state.characters = data;
+    }
+    
+    onEmptyCharacters(){
+        this.state.characters = [];
     }
 
     onGetTwoCharactersFail(err) {}

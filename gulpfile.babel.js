@@ -31,6 +31,7 @@ const production = process.env.NODE_ENV === 'production';
 const heroku = process.env.HEROKU_DEPLOYED;
 const dependencies = [
   'alt',
+  'alt-router',
   '@schibstedspain/rosetta',
   'react',
   'react-dom',

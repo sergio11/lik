@@ -24,9 +24,10 @@ class Home extends React.Component {
       HomeActions.getTwoCharacters();
   }
   
-  componentWillUnmount() {
-      HomeActions.setCharacterLoaded(false);
+  componentWillUnmount(){
+      HomeActions.emptyCharacters();
   }
+ 
   
   handleClick(character) {
       let winner = character.characterId;
@@ -35,7 +36,7 @@ class Home extends React.Component {
   }
   
   render() {
-    return Template.apply(this,[]);
+    return Template.call(this);
   }
 }
 

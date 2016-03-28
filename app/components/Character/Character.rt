@@ -3,37 +3,40 @@
 <rt-require dependency="react-bootstrap/lib/Col" as="Col"/>
 <rt-require dependency="react-bootstrap/lib/Image" as="Image"/>
 <rt-require dependency="react-imageloader" as="ImageLoader"/>
+<rt-require dependency="react-loader" as="Loader"/>
 
 <Grid>
-    <Row>
-        <Col xs={6} md={4}>
-            <ImageLoader
-               src="{'https://image.eveonline.com/Character/' + this.props.characterId + '_256.jpg'}"
-               imgProps="{{'thumbnail':true}}"
-               wrapper="{React.DOM.div}"
-               preloader="{this._preloader}">
-               Image load failed!
-             </ImageLoader>
-         </Col>
-         <Col xs={6} md={8}>
-             <h2 class='invert'><strong>{this.props.name}</strong></h2>
-             <h4 class='lead invert'>{this.i18n.t('character.race')}: <strong>{this.props.race}</strong></h4>
-             <h4 class='lead invert'>{this.i18n.t('character.bloodline')}: <strong>{this.props.bloodline}</strong></h4>
-             <h4 class='lead invert'>{this.i18n.t('character.gender')}: <strong>{this.props.gender}</strong></h4>
-             <button class='btn btn-transparent'
-                onClick="{this.report.bind(this, this.props.characterId)}"
-                disabled="{this.props.isReported}">
-                {this.props.isReported ? this.i18n.t('character.reported') : this.i18n.t('character.report')}
-             </button>
-         </Col>
-     </Row>
-     <Row>
-        <Col xs={12} className='profile-stats'>
-            <ul>
-               <li><span className='stats-number'>{this.props.winLossRatio}</span>{this.i18n.t('character.percentage')}</li>
-               <li><span className='stats-number'>{this.props.wins}</span>{this.i18n.t('character.wins')}</li>
-               <li><span className='stats-number'>{this.props.losses}</span>{this.i18n.t('character.losses')}</li>
-            </ul>
-         </Col>
-      </Row>
+    <Loader loaded="{this.props.loaded}" width="{10}" color='#fff' top="50%" left="50%" scale="{1.00}">
+        <Row>
+            <Col xs={6} md={4}>
+                <ImageLoader
+                src="{'https://image.eveonline.com/Character/' + this.props.characterId + '_256.jpg'}"
+                imgProps="{{'thumbnail':true}}"
+                wrapper="{React.DOM.div}"
+                preloader="{this._preloader}">
+                Image load failed!
+                </ImageLoader>
+            </Col>
+            <Col xs={6} md={8}>
+                <h2 class='invert'><strong>{this.props.name}</strong></h2>
+                <h4 class='lead invert'>{this.i18n.t('character.race')}: <strong>{this.props.race}</strong></h4>
+                <h4 class='lead invert'>{this.i18n.t('character.bloodline')}: <strong>{this.props.bloodline}</strong></h4>
+                <h4 class='lead invert'>{this.i18n.t('character.gender')}: <strong>{this.props.gender}</strong></h4>
+                <button class='btn btn-transparent'
+                    onClick="{this.report.bind(this, this.props.characterId)}"
+                    disabled="{this.props.isReported}">
+                    {this.props.isReported ? this.i18n.t('character.reported') : this.i18n.t('character.report')}
+                </button>
+            </Col>
+        </Row>
+        <Row>
+            <Col xs={12} className='profile-stats'>
+                <ul>
+                <li><span className='stats-number'>{this.props.winLossRatio}</span>{this.i18n.t('character.percentage')}</li>
+                <li><span className='stats-number'>{this.props.wins}</span>{this.i18n.t('character.wins')}</li>
+                <li><span className='stats-number'>{this.props.losses}</span>{this.i18n.t('character.losses')}</li>
+                </ul>
+            </Col>
+        </Row>
+    </Loader>
  </Grid>
