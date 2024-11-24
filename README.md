@@ -1,6 +1,6 @@
 # ⚔️ Lik - Character Voting App for EVE Online 🚀
 
-![lik](app/img/logo.png "Logo Lik")
+<img width="auto" align="left" src="app/img/logo.png" />
 
 Welcome to **Lik**, a character voting app designed for **EVE Online** players! This app allows users to vote for their favorite characters, interact with other players, and create an engaging experience using **React**, **Node.js**, **MongoDB**, and **Socket.IO**. 🔥
 
