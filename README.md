@@ -2,7 +2,11 @@
 
 <img width="auto" align="left" src="app/img/logo.png" />
 
-Welcome to **Lik**, a character voting app designed for **EVE Online** players! This app allows users to vote for their favorite characters, interact with other players, and create an engaging experience using **React**, **Node.js**, **MongoDB**, and **Socket.IO**. 🔥
+Welcome to **Lik**, the ultimate **character voting app** designed specifically for the **EVE Online** community! ⚔️ This app provides EVE Online players with an interactive and engaging platform to vote for their favorite characters, view real-time voting results, and interact with fellow players. Whether you're a capsuleer supporting your favorite faction or a collector of in-game lore, **Lik** offers a fun and dynamic way to participate in the EVE Online universe.
+
+The app utilizes modern web technologies like **React**, **Node.js**, **MongoDB**, and **Socket.IO** to provide a seamless user experience, ensuring fast updates, smooth interactions, and robust data storage. You can vote, track voting trends, and even view community-based voting patterns, all in real-time.
+
+<img width="auto"  src="app/img/app_image.png" />
 
 ## ✨ Features  
 - 🗳️ **Character Voting**: Cast your votes for characters within the EVE Online universe.
