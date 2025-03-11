@@ -22,6 +22,12 @@ The app utilizes modern web technologies like **React**, **Node.js**, **MongoDB*
 - 🔌 **Socket.IO** for real-time communication.
 - 🔑 **JWT Authentication** for secure user login.
 
+## 🏅 Acknowledgments
+
+This project is inspired by and based on the educational project **[New Eden Faces (React)](https://github.com/sahat/newedenfaces-react)**, which provided valuable insights and resources during the development of this app. I have learned a lot from this project and it has been an essential guide for building the final version of **Lik**. 
+
+A special thank you to **Sahat** for creating and sharing the source code for building a character voting app using **React**, **Node.js**, **MongoDB**, and **Socket.IO**. The learning materials and structure of this project have been instrumental in developing the features of **Lik**.
+
 ## 🛡️ Legal Disclaimer  
 This app is designed for **EVE Online** players for the purpose of community interaction and voting. It is not officially affiliated with **EVE Online** or **CCP Games**.
 
